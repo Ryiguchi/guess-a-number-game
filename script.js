@@ -32,7 +32,6 @@ const init = function () {
   gameSection.classList.remove("hidden");
 
   secretNum = getRandomNum(numMin, numMax);
-  console.log(secretNum);
   turnNum = 1;
   input.value = "";
   h1.textContent = "Number Guessing Game";
