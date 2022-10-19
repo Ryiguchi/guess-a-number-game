@@ -39,6 +39,7 @@ const init = function () {
   textMessage.textContent = "";
   list.innerHTML = "";
   textSecNum.textContent = "?";
+  btnReset.blur();
   // Styling
   body.style.backgroundColor = "#6853ab";
   h1.style.color = "#e0c95e";
@@ -53,6 +54,7 @@ const getRandomNum = function (min, max) {
 const displayGuess = function (guess, secretNum) {
   input.value = "";
   input.blur();
+  btnGuess.blur();
   const highLow = guess < secretNum ? "low" : "high";
 
   const text = `<li>Guess ${turnNum}:   ${guess} (too ${highLow})</li>`;
