@@ -38,7 +38,6 @@ const init = function () {
   textMessage.textContent = "";
   list.innerHTML = "";
   textSecNum.textContent = "?";
-  btnReset.blur();
   // Styling
   body.style.backgroundColor = "#6853ab";
   h1.style.color = "#e0c95e";
@@ -52,8 +51,6 @@ const getRandomNum = function (min, max) {
 ////////// Displays message and lists the guess
 const displayGuess = function (guess, secretNum) {
   input.value = "";
-  input.blur();
-  btnGuess.blur();
   const highLow = guess < secretNum ? "low" : "high";
 
   const text = `<li>Guess ${turnNum}:   ${guess} (too ${highLow})</li>`;
@@ -70,7 +67,6 @@ const gameEnd = function (guess, result) {
   body.style.backgroundColor = "#e0c95e";
   h1.style.color = "#1e0a5d";
   input.value = "";
-  input.blur();
 
   if (result === "winner") {
     h1.textContent = "🎉 You got it!!";
@@ -88,6 +84,7 @@ const gameEnd = function (guess, result) {
 const playGame = function () {
   // Get the players guess
   const curGuess = Math.floor(input.value);
+  input.blur();
 
   // Check if number
   if (isNaN(curGuess) || curGuess < 0 || curGuess > 100) {
