@@ -68,6 +68,8 @@ const gameEnd = function (guess, result) {
   // Styling
   body.style.backgroundColor = "#e0c95e";
   h1.style.color = "#1e0a5d";
+  input.value = "";
+  input.blur();
 
   if (result === "winner") {
     h1.textContent = "🎉 You got it!!";
