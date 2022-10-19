@@ -14,7 +14,7 @@ html {
 body {
   background-color: #6853ab;
 
-  width: 120rem;
+  width: 100vw;
 
   margin: 3rem auto;
 }
@@ -24,7 +24,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+
+  padding: 1.6rem;
 }
 
 h1 {
@@ -33,10 +34,6 @@ h1 {
   text-align: center;
 
   margin-bottom: 3rem;
-}
-
-h1 span {
-  color: #1e0a5d;
 }
 
 label {
@@ -53,7 +50,7 @@ input {
   color: #655400;
   background-color: #d0ebff;
 
-  border: 2px solid #655400;
+  border: none;
   border-radius: 5px;
 
   width: 21rem;
