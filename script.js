@@ -52,6 +52,7 @@ const getRandomNum = function (min, max) {
 ////////// Displays message and lists the guess
 const displayGuess = function (guess, secretNum) {
   input.value = "";
+  input.blur();
   const highLow = guess < secretNum ? "low" : "high";
 
   const text = `<li>Guess ${turnNum}:   ${guess} (too ${highLow})</li>`;
