@@ -23,6 +23,7 @@ main {
   padding: 1.6rem;
 }
 
+/* Reusable ************* */
 .section {
   display: flex;
   flex-direction: column;
@@ -30,48 +31,9 @@ main {
   align-items: center;
 }
 
-h1 {
-  font-size: 2.4rem;
-
-  text-align: center;
-
-  margin-bottom: 1.6rem;
-}
-
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.6rem;
-}
-
-.title-text {
-  position: relative;
-  z-index: 5;
-
-  font-size: 2rem;
-  font-weight: 600;
-  color: #d0ebff;
-}
-
-.secret-number {
-  font-size: 4rem;
-  font-weight: 600;
-  color: #e0c95e;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #1e0a5d;
-
-  height: 6.2rem;
-  width: 6.2rem;
-}
-
 label {
   display: block;
+  text-align: center;
 
   font-size: 2rem;
 
@@ -80,14 +42,13 @@ label {
 
 input {
   font-size: 2.4rem;
+  text-align: center;
 
   color: #655400;
   background-color: #d0ebff;
 
   border: none;
   border-radius: 5px;
-
-  width: 22rem;
 
   padding: 0.4rem 1rem;
   margin-bottom: 0.8rem;
@@ -97,11 +58,12 @@ input:focus {
   outline: 5px double #1e0a5d;
 }
 
-.btns {
+.wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
-
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
 }
 
 .btn {
@@ -127,8 +89,83 @@ input:focus {
   background-color: #d0ebff;
 }
 
+/* Main ****************** */
+
+h1 {
+  font-size: 3rem;
+
+  text-align: center;
+
+  margin-bottom: 1.6rem;
+}
+
+.input-wrapper {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.setup-input {
+  width: 10rem;
+}
+
+.press-play-wrapper {
+  grid-column: 1 / -1;
+
+  padding-left: 2rem;
+}
+
+.setup-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guesses-box {
+  grid-column: 1 / -1;
+
+  margin-bottom: 1.6rem;
+}
+
+.title-text {
+  position: relative;
+  z-index: 5;
+
+  font-size: 2rem;
+  font-weight: 600;
+  color: #d0ebff;
+}
+
+.secret-number {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #e0c95e;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #1e0a5d;
+  border-radius: 5px;
+
+  height: 7rem;
+  width: 7rem;
+}
+
+#guess {
+  width: 22rem;
+}
+
+.btns {
+  display: flex;
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+
 .message {
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
 
   color: #1e0a5d;

@@ -6,7 +6,10 @@ const textSecNum = document.querySelector(".secret-number");
 
 const list = document.querySelector("ul");
 
-const input = document.querySelector("input");
+const inputGuess = document.querySelector("#guess");
+const inputMin = document.querySelector(".input-min");
+const inputMax = document.querySelector(".input-max");
+const inputTurns = document.querySelector(".input-guesses");
 
 const btnPlay = document.querySelector(".play-btn");
 const btnGuess = document.querySelector(".guess-btn");
@@ -17,23 +20,26 @@ const h1 = document.querySelector("h1");
 const pressPlayBox = document.querySelector(".press-play-wrapper");
 const secretNumBox = document.querySelector(".secret-number-wrapper");
 const gameSection = document.querySelector(".game-section");
+const setupSection = document.querySelector(".input-wrapper");
 
-let secretNum, turnNum;
-const numMin = 0;
-const numMax = 100;
-const maxTurns = 5;
+let secretNum, turnNum, numMin, numMax, maxTurns;
 
 // Functions //////////////////////////////
 
 ///////// Initializes game
-const init = function () {
-  pressPlayBox.classList.add("hidden");
-  secretNumBox.classList.remove("hidden");
-  gameSection.classList.remove("hidden");
 
-  secretNum = getRandomNum(numMin, numMax);
-  turnNum = 1;
-  input.value = "";
+const initState = function () {
+  setupSection.classList.remove("hidden");
+  secretNumBox.classList.add("hidden");
+  gameSection.classList.add("hidden");
+
+  //Reseting inputs to initial
+  inputMin.value = 0;
+  inputMax.value = 100;
+  inputTurns.value = 5;
+
+  // clearing
+  inputGuess.value = "";
   h1.textContent = "Number Guessing Game";
   textMessage.textContent = "";
   list.innerHTML = "";
@@ -43,6 +49,26 @@ const init = function () {
   h1.style.color = "#e0c95e";
 };
 
+const init = function () {
+  setupSection.classList.add("hidden");
+  secretNumBox.classList.remove("hidden");
+  gameSection.classList.remove("hidden");
+
+  numMin = Number(inputMin.value);
+  numMax = Number(inputMax.value);
+  maxTurns = Number(inputTurns.value);
+
+  turnNum = 1;
+
+  secretNum = getRandomNum(numMin, numMax);
+  console.log(secretNum);
+  console.log(maxTurns);
+};
+
+const isValid = function (curGuess) {
+  return isNaN(curGuess) || curGuess < 0 || curGuess > 100 ? false : true;
+};
+
 ///////// Returns a random number between 'min' and 'max'
 const getRandomNum = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -50,7 +76,7 @@ const getRandomNum = function (min, max) {
 
 ////////// Displays message and lists the guess
 const displayGuess = function (guess, secretNum) {
-  input.value = "";
+  inputGuess.value = "";
   const highLow = guess < secretNum ? "low" : "high";
 
   const text = `<li>Guess ${turnNum}:   ${guess} (too ${highLow})</li>`;
@@ -66,10 +92,10 @@ const gameEnd = function (guess, result) {
   // Styling
   body.style.backgroundColor = "#e0c95e";
   h1.style.color = "#1e0a5d";
-  input.value = "";
+  inputGuess.value = "";
 
   if (result === "winner") {
-    h1.textContent = "🎉 You got it!!";
+    h1.textContent = "🎉 You got it!! 🎉";
     // Message
     textMessage.textContent = `Congratulations!!! ${guess} was the right number!!`;
   }
@@ -82,13 +108,16 @@ const gameEnd = function (guess, result) {
 
 // Main functionality
 const playGame = function () {
+  console.log(turnNum);
+  console.log(maxTurns);
   // Get the players guess
-  const curGuess = Math.floor(input.value);
-  input.blur();
+  const curGuess = Math.floor(inputGuess.value);
+  inputGuess.blur();
 
   // Check if number
-  if (isNaN(curGuess) || curGuess < 0 || curGuess > 100) {
+  if (!isValid(curGuess)) {
     textMessage.textContent = `You entered an invalid number, try again ...`;
+    inputGuess.value = "";
     return;
   }
 
@@ -96,7 +125,10 @@ const playGame = function () {
   if (curGuess === secretNum) {
     gameEnd(curGuess, "winner");
     return;
-  } else if (turnNum === maxTurns) {
+  }
+
+  if (turnNum === maxTurns) {
+    console.log("lose");
     gameEnd(curGuess, "loser");
     return;
   }
@@ -110,10 +142,10 @@ const playGame = function () {
 
 btnPlay.addEventListener("click", init);
 
-btnReset.addEventListener("click", init);
+btnReset.addEventListener("click", initState);
 
 btnGuess.addEventListener("click", playGame);
 
-input.addEventListener("keydown", function (e) {
+inputGuess.addEventListener("keydown", function (e) {
   if (e.key === "Enter") playGame();
 });
