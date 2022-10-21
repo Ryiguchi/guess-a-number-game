@@ -3,7 +3,7 @@
   --main-guess-num-text-tint: #655400;
   --main-guess-num-background-color: #6853ab;
   --main-guess-num-background-shade: #d0ebff;
-  --main-guess-num-background-tint: ##1e0a5d;
+  --main-guess-num-background-tint: #1e0a5d;
 
   --rps-primary-color: #5da099;
   --rps-primary-shade-1: #9acbc6;
@@ -109,10 +109,6 @@ input:focus {
   outline: 5px double var(--main-guess-num-background-tint);
 }
 
-.title-input {
-  width: 10rem;
-}
-
 .press-play-container {
   grid-column: 1 / -1;
 
@@ -124,9 +120,8 @@ input:focus {
   text-transform: uppercase;
 
   color: inherit;
-  background-color: var(--main-guess-num-background-tint);
 
-  width: 10rem;
+  width: 12rem;
 
   border: none;
   border-radius: 5px;
@@ -136,11 +131,6 @@ input:focus {
   cursor: pointer;
 
   transition: 0.3s;
-}
-
-.btn:hover {
-  color: var(--main-guess-num-background-tint);
-  background-color: var(--main-guess-num-background-shade);
 }
 
 .message {
@@ -165,7 +155,8 @@ input:focus {
 
 .input-guess-num {
   color: var(--main-guess-num-text-tint);
-  background-color: var (var(--main-guess-num-background-shade));
+  background-color: var(--main-guess-num-background-shade);
+  width: 10rem;
 }
 
 .min-input-container {
@@ -186,6 +177,15 @@ input:focus {
   gap: 1rem;
 }
 
+.btn-guess-number {
+  color: inherit;
+  background-color: var(--main-guess-num-background-tint);
+}
+
+.btn-guess-number:hover {
+  color: var(--main-guess-num-background-tint);
+  background-color: var(--main-guess-num-background-shade);
+}
 .start-message {
   grid-column: 1 / -1;
 }
@@ -250,7 +250,7 @@ li {
 
 .body__rps {
   background-color: var(--rps-secondary-color);
-  color: var(--rps-primary-shade-1);
+  color: var(--rps-primary-shade-2);
 }
 
 .input-rps {

@@ -13,7 +13,7 @@ const inputSetGuesses = document.querySelector(".input-guesses");
 
 const btnPlay = document.querySelector(".play-btn");
 const btnGuess = document.querySelector(".guess-btn");
-const btnReset = document.querySelector(".reset-btn");
+const btnReset = document.querySelector(".reset-btn-guess-num");
 
 const body = document.querySelector("body");
 const title = document.querySelector("h1");

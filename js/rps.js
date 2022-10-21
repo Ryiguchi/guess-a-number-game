@@ -52,7 +52,7 @@ const initStartState = function () {
   choiceSection.classList.remove("hidden");
 
   body.style.backgroundColor = "var(--rps-secondary-color)";
-  mainTitle.style.color = "var(--rps-primary-shade-1)";
+  mainTitle.style.color = "var(--rps-primary-shade-2)";
   tableBody.innerHTML = "";
 };
 
@@ -178,7 +178,7 @@ const displayTable = function () {
 const endGame = function () {
   // --styling
   body.style.backgroundColor = "var(--rps-primary-tint-1)";
-  mainTitle.style.color = "var(--rps-secondary-tint-2)";
+  mainTitle.style.color = "var(--rps-primary-shade-2)";
   choiceSection.classList.add("hidden");
   // --display winner
   playerTotal === numWins
