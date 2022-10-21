@@ -1,27 +1,27 @@
 "use strict";
 
 const textGuess = document.querySelector(".guess-label");
-const textMessage = document.querySelector(".message");
+const textStartMessage = document.querySelector(".start-message");
+const textGameMessage = document.querySelector(".game-message");
 const textSecNum = document.querySelector(".secret-number");
 const list = document.querySelector("ul");
 
-const inputGuess = document.querySelector("#guess");
-const inputMin = document.querySelector(".input-min");
-const inputMax = document.querySelector(".input-max");
-const inputTurns = document.querySelector(".input-guesses");
+const inputUserGuess = document.querySelector("#guess");
+const inputSetMin = document.querySelector(".input-min");
+const inputSetMax = document.querySelector(".input-max");
+const inputSetGuesses = document.querySelector(".input-guesses");
 
 const btnPlay = document.querySelector(".play-btn");
 const btnGuess = document.querySelector(".guess-btn");
 const btnReset = document.querySelector(".reset-btn");
 
 const body = document.querySelector("body");
-const h1 = document.querySelector("h1");
+const title = document.querySelector("h1");
 const h3 = document.querySelector("h3");
-const pressPlayBox = document.querySelector(".press-play-wrapper");
-const secretNumBox = document.querySelector(".secret-number-wrapper");
+const pressPlayContainer = document.querySelector(".press-play-container");
+const secretNumContainer = document.querySelector(".secret-number-container");
 const gameSection = document.querySelector(".game-section");
-const previousSection = document.querySelector(".previous-guesses-section");
-const setupSection = document.querySelector(".input-wrapper");
+const startSection = document.querySelector(".start-section");
 
 let secretNum, turnNum, numMin, numMax, maxTurns;
 
@@ -30,59 +30,54 @@ let secretNum, turnNum, numMin, numMax, maxTurns;
 ///////// Initial state
 const initState = function () {
   // Hiding start screen / Showing playing screen
-  setupSection.classList.remove("hidden");
-  secretNumBox.classList.add("hidden");
+  startSection.classList.remove("hidden");
   gameSection.classList.add("hidden");
-  previousSection.classList.add("hidden");
-  textMessage.classList.add("hidden");
 
   //Reseting inputs to initial
-  inputMin.value = 0;
-  inputMax.value = 100;
-  inputTurns.value = 5;
+  inputSetMin.value = 0;
+  inputSetMax.value = 100;
+  inputSetGuesses.value = 5;
 
   // clearing
-  inputGuess.value = "";
-  h1.textContent = "Number Guessing Game";
-  textMessage.textContent = "";
+  inputUserGuess.value = "";
+  title.textContent = "Number Guessing Game";
+  textStartMessage.textContent = "";
+  textGameMessage.textContent = "";
   list.innerHTML = "";
   textSecNum.textContent = "?";
 
   // Styling
   body.style.backgroundColor = "#6853ab";
-  h1.style.color = "#e0c95e";
+  title.style.color = "#e0c95e";
 };
 
 /////////// Initializes game
 const init = function () {
   // Set values to predetermined values
-  numMin = Number(inputMin.value);
+  numMin = Number(inputSetMin.value);
   if (isNaN(numMin)) {
-    displayInvalidMessage();
+    displayInvalidMessage("start");
     return;
   }
 
-  numMax = Number(inputMax.value);
+  numMax = Number(inputSetMax.value);
   if (isNaN(numMax) || numMax < numMin) {
-    displayInvalidMessage();
+    displayInvalidMessage("start");
     return;
   }
 
-  maxTurns = Number(inputTurns.value);
+  maxTurns = Number(inputSetGuesses.value);
   if (isNaN(maxTurns) || maxTurns < 1) {
-    displayInvalidMessage();
+    displayInvalidMessage("start");
     return;
   }
 
   // Showing start screen / hiding playing screen
-  setupSection.classList.add("hidden");
-  secretNumBox.classList.remove("hidden");
+  startSection.classList.add("hidden");
   gameSection.classList.remove("hidden");
-  previousSection.classList.remove("hidden");
-  textMessage.classList.remove("hidden");
 
   // Set text
-  textMessage.textContent = "";
+  textGameMessage.textContent = "";
   h3.textContent = `Your Previous Guesses (out of ${maxTurns})`;
 
   // Create label for the guess input box
@@ -100,9 +95,14 @@ const validNum = function (num) {
 };
 
 // Tells the user that they have entered an invalid number
-const displayInvalidMessage = function () {
-  textMessage.classList.remove("hidden");
-  textMessage.textContent = `You entered an invalid number! Try again ...`;
+const displayInvalidMessage = function (el) {
+  if (el === "start") {
+    textStartMessage.classList.remove("hidden");
+    textStartMessage.textContent = `You entered an invalid number! Try again ...`;
+  } else {
+    textGameMessage.classList.remove("hidden");
+    textGameMessage.textContent = `You entered an invalid number! Try again ...`;
+  }
 };
 
 /////////// Check if a guess is valid
@@ -118,13 +118,13 @@ const getRandomNum = function (min, max) {
 ////////// Displays message and lists the guess
 const displayGuess = function (guess, secretNum) {
   // clear guess value
-  inputGuess.value = "";
+  inputUserGuess.value = "";
 
   // determine if guess is too high or too low
   const tooHigh = guess > secretNum ? true : false;
 
   // Build message text
-  textMessage.textContent = `You need to guess ${
+  textGameMessage.textContent = `You need to guess ${
     tooHigh ? "lower" : "higher"
   } than ${guess}, try again ...`;
 
@@ -139,20 +139,20 @@ const displayGuess = function (guess, secretNum) {
 const gameEnd = function (guess, result) {
   // Styling
   body.style.backgroundColor = "#e0c95e";
-  h1.style.color = "#1e0a5d";
-  inputGuess.value = "";
+  title.style.color = "#1e0a5d";
+  inputUserGuess.value = "";
 
   // Display win messages
   if (result === "win") {
-    h1.textContent = "🎉 You got it!! 🎉";
+    title.textContent = "🎉 You got it!! 🎉";
     // Message
-    textMessage.textContent = `Congratulations!!! ${guess} was the right number!!`;
+    textGameMessage.textContent = `Congratulations!!! ${guess} was the right number!!`;
   }
 
   // Display lose messages
   if (result === "lose") {
-    h1.textContent = "😢 You lost!! 😢";
-    textMessage.textContent = `Too bad!! You're out of guesses!!`;
+    title.textContent = "😢 You lost!! 😢";
+    textGameMessage.textContent = `Too bad!! You're out of guesses!!`;
   }
 
   // Show the secret number
@@ -162,13 +162,13 @@ const gameEnd = function (guess, result) {
 //////////// Main functionality
 const playGame = function () {
   // Get the players guess
-  const curGuess = Math.floor(inputGuess.value);
-  inputGuess.blur();
+  const curGuess = Math.floor(inputUserGuess.value);
+  inputUserGuess.blur();
 
   // Check if number
   if (isNaN(curGuess) || curGuess < numMin || curGuess > numMax) {
-    displayInvalidMessage();
-    inputGuess.value = "";
+    displayInvalidMessage("game");
+    inputUserGuess.value = "";
     return;
   }
 
@@ -195,7 +195,7 @@ btnPlay.addEventListener("click", init);
 // For the guess - either button or enter key
 btnGuess.addEventListener("click", playGame);
 
-inputGuess.addEventListener("keydown", function (e) {
+inputUserGuess.addEventListener("keydown", function (e) {
   if (e.key === "Enter") playGame();
 });
 

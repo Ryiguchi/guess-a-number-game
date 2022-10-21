@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Rock, papper, scissors</title>
+    <script defer src="js/rps.js"></script>
+  </head>
+  <body class="body__rps">
+    <h1 class="h1-rps title">Rock, Papper, Scissors</h1>
+    <header class="start-section start-section-rps flex flex-col">
+      <div class="input-container flex flex-col">
+        <label for="num-wins" class="label-num-wins">Number of Wins</label>
+        <input
+          type="number"
+          name="num-wins"
+          class="input-rps title-input flex flex-col"
+          value="5"
+          min="1"
+          max="10"
+        />
+      </div>
+      <div class="press-play-container flex">
+        <h2 class="h2-rps">Press</h2>
+        <button class="play-btn btn-rps btn">Play</button>
+        <h2 class="h2-rps">To Start</h2>
+      </div>
+      <div class="message message-rps start-message hidden"></div>
+    </header>
+
+    <main class="game-section flex flex-col hidden">
+      <section class="action-section">
+        <h2 class="h2-rps action-title action-title-1"></h2>
+
+        <div class="action-img-container flex">
+          <img
+            src="img/1.png"
+            alt="Rock Hand"
+            class="action-img player-action-img"
+          />
+          <img
+            src="img/1.png"
+            alt="Rock Hand"
+            class="action-img computer-action-img"
+          />
+        </div>
+      </section>
+      <section class="choice-section">
+        <h2 class="h2-rps choice-title">Choose your next move!</h2>
+        <div class="all-choice-img-container flex">
+          <div class="choice-img-container flex" id="1">
+            <img src="img/1.png" alt="Rock Hand" class="choice-img" id="1" />
+          </div>
+          <div class="choice-img-container flex" id="2">
+            <img src="img/2.png" alt="Papper Hand" class="choice-img" id="2" />
+          </div>
+          <div class="choice-img-container flex" id="3">
+            <img
+              src="img/3.png"
+              alt="Scissors Hand"
+              class="choice-img"
+              id="3"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="score-section">
+        <h2 class="h2-rps score-section-title"></h2>
+        <table class="score-table">
+          <thead>
+            <th>Round</th>
+            <th>Player</th>
+            <th>Computer</th>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td class="player-total">0</td>
+              <td class="computer-total">0</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <button class="btn-start-over btn-rps btn">Start Over</button>
+    </main>
+  </body>
+</html>
