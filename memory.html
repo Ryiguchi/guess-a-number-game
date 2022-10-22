@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+    <script defer src="js/memory.js"></script>
+  </head>
+  <body class="body-memory">
+    <h1 class="h1-memory title">Memory</h1>
+    <section class="start-section-memory flex flex-col">
+      <div class="game-mode-container">
+        <h2 class="h2-memory h2-memory-start-section">Choose the game mode:</h2>
+        <div class="input-time-container flex">
+          <div class="timed-container radio-container-memory flex">
+            <input
+              type="radio"
+              name="game-mode"
+              class="input-memory"
+              id="timed"
+            />
+            <label for="timed">Timed</label>
+          </div>
+          <select name="minutes" id="minutes-select" class="btn">
+            <option>Minutes</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="all-matches-container radio-container-memory flex">
+          <input
+            type="radio"
+            name="game-mode"
+            class="input-memory"
+            id="all-matches"
+            checked
+          />
+          <label for="all-matches">When all matched are found</label>
+        </div>
+      </div>
+      <div class="game-mode-container flex flex-col">
+        <h2 class="h2-memory h2-memory-start-section">
+          Choose the game difficulty:
+        </h2>
+        <select id="difficulty-select" class="btn">
+          <option>Difficulty</option>
+          <option value="12">Easy (12 cards)</option>
+          <option value="20">Medium (20 cards)</option>
+          <option value="30">Hard (30 cards)</option>
+        </select>
+      </div>
+      <div class="press-play-container-memory flex">
+        <h2 class="h2-memory">Press</h2>
+        <button class="play-btn btn btn-memory">Play</button>
+        <h2 class="h2-memory">To Start</h2>
+      </div>
+
+      <div class="message message-memory start-message-memory"></div>
+    </section>
+    <main class="main-memory hidden">
+      <section class="cards-section grid"></section>
+      <div
+        class="message-memory game-message-memory game-container-memory flex"
+      ></div>
+      <section class="player-section-memory grid grid-col-2">
+        <div
+          class="game-container-memory player-container player-1-container flex flex-col"
+        >
+          <h2 class="player">Player 1</h2>
+          <h2 class="player-1-score">0</h2>
+        </div>
+        <div
+          class="game-container-memory player-container player-2-container flex flex-col"
+        >
+          <h2 class="player">Player 2</h2>
+          <h2 class="player-2-score">0</h2>
+        </div>
+      </section>
+      <div class="game-container-memory clock-memory-container flex">
+        <div class="clock-memory"></div>
+
+        <button class="btn-start-over btn-memory btn">Start Over</button>
+      </div>
+    </main>
+  </body>
+</html>
+
+<!-- <div class="card-container">
+  <div class="card-inner-container">
+    <div class="card-front">
+      <img src=".webp" alt="Logo" />
+    </div>
+    <div class="card-back">
+      <img src="img/memory/back.svg" alt="Chas Academy Logo" />
+    </div>
+  </div>
+</div> -->
