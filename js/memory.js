@@ -142,7 +142,7 @@ const createCards = function () {
     <img src="img/memory/back.svg" alt="Chas Academy Logo"  class="card-img" />
   </div>
     <div class="card-back flex">
-      <img src="img/memory/${card}.png" alt="Logo"  />
+      <img src="img/marvel/${card}.jpeg" alt="Logo"  />
     </div>
   </div>
 </div>`;
