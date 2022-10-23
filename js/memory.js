@@ -12,6 +12,8 @@ const selectMinutes = document.querySelector("#minutes-select");
 const selectDifficulty = document.querySelector("#difficulty-select");
 // --elements
 const startScreen = document.querySelector(".start-section-memory");
+const startMessageEl = document.querySelector(".start-message-memory");
+const startMessageTextEl = document.querySelector(".start-message-memory-text");
 const gameScreen = document.querySelector(".main-memory");
 const gameBoard = document.querySelector(".cards-section");
 const gameMessage = document.querySelector(".game-message-memory");
@@ -19,130 +21,160 @@ const player1ScoreEl = document.querySelector(".player-1-score");
 const player2ScoreEl = document.querySelector(".player-2-score");
 const player1ContainerEl = document.querySelector(".player-1-container");
 const player2ContainerEl = document.querySelector(".player-2-container");
+const clock = document.querySelector(".clock-memory");
 
 // ///////////////////////////////////////////
 // ///////////////VARIABLES///////////////////
 // ///////////////////////////////////////////
 
-let gameMode,
-  totalTime,
-  totalNumCards,
-  totalPairs,
-  deck,
-  columns,
-  cardInner,
+let matchedCards = [],
+  numCards,
   turnCardNum,
+  selectedCard,
   firstCard,
   secondCard,
   turn,
   player1Score,
-  player2Score;
-
-const fullDeck = [
-  "1",
-  "1",
-  "2",
-  "2",
-  "3",
-  "3",
-  "4",
-  "4",
-  "5",
-  "5",
-  "6",
-  "6",
-  "7",
-  "7",
-  "8",
-  "8",
-  "9",
-  "9",
-  "10",
-  "10",
-  "11",
-  "11",
-  "12",
-  "12",
-  "13",
-  "13",
-  "14",
-  "14",
-  "15",
-  "15",
-];
+  player2Score,
+  playing,
+  timer;
 
 // ///////////////////////////////////////////
 // ///////////////FUNCTIONS///////////////////
 // ///////////////////////////////////////////
 
-const initGame = function () {
-  gameBoard.classList.remove("grid-col-3", "grid-col-4", "grid-col-5");
-  getSettings();
-  changeScreen();
-  deck = shuffleCards();
-  createCards();
+// //////////////// SET-UP ///////////////////
 
-  turnCardNum = 1;
-  turn = 1;
+// CHECKS IF USER SELECTED MINUTES AND DIFFICULTY ///////
+const checkForValidSettings = function () {
+  if (
+    selectDifficulty.value === "Difficulty" ||
+    (selectMinutes.value === "Minutes" && radioTimed.checked)
+  ) {
+    startMessageEl.classList.remove("hidden");
+    startMessageTextEl.textContent =
+      "Please make sure you have selected all necessary options!";
+    return false;
+  }
+  return true;
+};
+
+// INITIALIZES THE GAME ////////////////////
+const initGame = function () {
+  // --if user chooses timed game, start timer
+  checkForTimedGame();
+  // --change to the game screen
+  changeScreen();
+  // --build the deck and shuffle it
+  const shuffledDeck = buildDeck();
+  // --build the HTML and display cards
+  dealCards(shuffledDeck);
+  // --reset game values
+  resetGame();
+};
+
+const resetGame = function () {
   player1Score = 0;
   player2Score = 0;
-
-  player1ContainerEl.style.filter = "none";
-  player2ContainerEl.style.filter = "grayscale(.8)";
-
-  gameMessage.textContent = "Player 1's turn";
+  matchedCards = [];
+  turn = 2;
+  player1ScoreEl.textContent = 0;
+  player2ScoreEl.textContent = 0;
+  // --set player 1
+  changeActivePlayer();
 };
 
-const getSettings = function () {
-  // --get game settings
-  if (radioTimed.checked) {
-    gameMode = "timed";
-    totalTime = Number(selectMinutes.value);
-  } else gameMode = "matches";
-  totalNumCards = Number(selectDifficulty.value);
-  totalPairs = totalNumCards / 2;
+// IF USER CHOOSES TIMED GAME, THEN START TIMER ///////
+const checkForTimedGame = function () {
+  // --return if not a timed game
+  if (!radioTimed.checked) return;
+
+  let time = Number(selectMinutes.value);
+  // --display time every second
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    clock.textContent = `${min}:${sec}`;
+    // --check for time up
+    if (time === 0) {
+      clearInterval(timer);
+      // --decide and display winner
+      gameEnd();
+    }
+
+    time--;
+  };
+  // --display initial time
+  tick();
+  // --timer
+  timer = setInterval(tick, 1000);
 };
 
+// TOGGLES BETWEEN START AND GAME SCREEN ////////////
 const changeScreen = function () {
   startScreen.classList.toggle("hidden");
   gameScreen.classList.toggle("hidden");
 };
 
-const shuffleCards = function () {
-  const playDeck = fullDeck.slice(0, totalNumCards);
-  let cardsLeft = totalNumCards,
+// BUILDS A DECK BASED ON THE NUMBER OF CARDS (DIFFICULTY) /////
+const buildDeck = function () {
+  numCards = Number(selectDifficulty.value);
+  const unshuffledDeck = [];
+  // --assigns 2 of each number (pairs)
+  for (let i = 1; i <= numCards / 2; i++) {
+    unshuffledDeck.push(i);
+    unshuffledDeck.push(i);
+  }
+  // --shuffles deck
+  const shuffledDeck = shuffleCards(unshuffledDeck);
+  return shuffledDeck;
+};
+
+// SHUFFLES DECK /////////////////////////////
+const shuffleCards = function (deck) {
+  let cardsLeft = deck.length,
     temp,
     randomCard;
 
   while (cardsLeft) {
+    // --choose random card from the remaining cards
     randomCard = Math.floor(Math.random() * cardsLeft--);
-    temp = playDeck[cardsLeft];
-    playDeck[cardsLeft] = playDeck[randomCard];
-    playDeck[randomCard] = temp;
+    // --switch random card with last card
+    temp = deck[cardsLeft];
+    deck[cardsLeft] = deck[randomCard];
+    deck[randomCard] = temp;
   }
 
-  return playDeck;
+  return deck;
 };
 
-const createCards = function () {
+// DISPLAYS CARDS /////////////////////////////////
+const dealCards = function (deck) {
+  // --removes previous game values
+  gameBoard.classList.remove("grid-col-3", "grid-col-4", "grid-col-5");
   gameBoard.innerHTML = "";
-  if (totalNumCards === 12) {
+
+  let columns;
+  // chooses class based on number of cards (difficulty)
+  if (deck.length === 12) {
     columns = "grid-col-3";
-  } else if (totalNumCards === 20) {
+  } else if (deck.length === 20) {
     columns = "grid-col-4";
   } else columns = "grid-col-5";
 
   gameBoard.classList.add(columns);
 
+  // --builds HTML
   let htmlStr = "";
-  deck.forEach((card) => {
+  deck.forEach((card, i) => {
     htmlStr += `<div class="card-container">
-  <div class="card-inner-container" data-num="${card}">
+    <div class="card-inner-container" data-num="${card}" data-card="${i}">
   <div class="card-front flex">
     <img src="img/memory/back.svg" alt="Chas Academy Logo"  class="card-img" />
   </div>
-    <div class="card-back flex">
-      <img src="img/memory/${card}.png" alt="Logo"  />
+    <div class="card-back flex" data-num="${card}" data-card="${i}">
+      <img src="img/memory/${card}.png" alt="Logo" data-num="${card}" data-card="${i}" />
     </div>
   </div>
 </div>`;
@@ -150,55 +182,62 @@ const createCards = function () {
   gameBoard.insertAdjacentHTML("afterbegin", htmlStr);
 };
 
-const getRandomNum = function (min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+///////////// PLAYING //////////////////
+
+// FLIPS THE CHOSEN CARD /////////////
+const chooseCard = function (e) {
+  flipCard(e);
+  if (turnCardNum === 1) {
+    firstCard = selectedCard;
+    turnCardNum++;
+    playing = true;
+    return;
+  }
+  firstCard.dataset.num === selectedCard.dataset.num ? match() : noMatch();
 };
 
 const flipCard = function (e) {
-  if (e.classList.contains("card-img"))
-    cardInner = e.parentElement.parentElement;
-  else cardInner = e.parentElement;
-  cardInner.style.transform = "rotateY(180deg)";
-  if (turnCardNum === 1) {
-    firstCard = cardInner;
-    turnCardNum++;
-    return;
-  }
-  checkMatch();
+  // --select correct element to flip
+  selectedCard = e.classList.contains("card-img")
+    ? e.parentElement.parentElement
+    : e.parentElement;
+
+  selectedCard.style.transform = "rotateY(180deg)";
 };
 
-const checkMatch = function () {
-  if (firstCard.dataset.num === cardInner.dataset.num) {
-    gameMessage.textContent = "You found a match!!";
-    if (turn === 1) {
-      player1Score++;
-      player1ScoreEl.textContent = player1Score;
-    } else {
-      player2Score++;
-      player2ScoreEl.textContent = player2Score;
-    }
-    if (gameMode === "matches" && player1Score + player2Score === totalPairs)
-      gameEnd();
-    turnCardNum = 1;
-    console.log(player1Score, player2Score);
+const match = function () {
+  gameMessage.textContent = "You found a match!!";
+  if (turn === 1) {
+    player1Score++;
+    player1ScoreEl.textContent = player1Score;
   } else {
-    gameMessage.textContent = "They don't match!!";
-    setTimeout(() => {
-      cardInner.style.transform = "none";
-      firstCard.style.transform = "none";
-      resetTurn();
-    }, 1500);
+    player2Score++;
+    player2ScoreEl.textContent = player2Score;
   }
+  matchedCards.push(firstCard.dataset.num);
+  if (player1Score + player2Score === numCards / 2) gameEnd();
+  turnCardNum = 1;
+  playing = true;
+};
+
+const noMatch = function () {
+  gameMessage.textContent = "They don't match!!";
+  setTimeout(() => {
+    selectedCard.style.transform = "none";
+    firstCard.style.transform = "none";
+    setTimeout(() => {
+      resetTurn();
+    }, 500);
+  }, 1500);
 };
 
 const resetTurn = function () {
-  console.log(turn);
-  turnCardNum = 1;
   changeActivePlayer();
-  turn = ((turn + 2) % 2) + 1;
 };
 
 const changeActivePlayer = function () {
+  turnCardNum = 1;
+  playing = true;
   if (turn === 1) {
     player1ContainerEl.style.filter = "grayscale(.8)";
     player2ContainerEl.style.filter = "none";
@@ -208,9 +247,11 @@ const changeActivePlayer = function () {
     player1ContainerEl.style.filter = "none";
     gameMessage.textContent = "Player 1's turn...";
   }
+  turn = ((turn + 2) % 2) + 1;
 };
 
 const gameEnd = function () {
+  playing = false;
   if (player1Score > player2Score) {
     gameMessage.textContent = "Player 1 wins!!!";
   } else if (player2Score > player1Score) {
@@ -220,16 +261,25 @@ const gameEnd = function () {
 // ///////////////////////////////////////////
 // ///////////EVENT LISTENERS/////////////////
 // ///////////////////////////////////////////
-btnPlay.addEventListener("click", function (e) {
-  e.preventDefault();
+btnPlay.addEventListener("click", function () {
+  if (!checkForValidSettings()) return;
   initGame();
 });
 
 btnStartOver.addEventListener("click", function () {
+  if (timer) clearInterval(timer);
   changeScreen();
 });
 
 gameBoard.addEventListener("click", function (e) {
-  if (e.target.classList.contains("cards-section")) return;
-  flipCard(e.target);
+  console.log(e.target);
+  if (
+    matchedCards.includes(e.target.dataset.num) ||
+    !playing ||
+    e.target.classList.contains("cards-section") ||
+    (firstCard && e.target.dataset.card === firstCard.dataset.card)
+  )
+    return;
+  playing = false;
+  chooseCard(e.target);
 });

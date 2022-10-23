@@ -25,11 +25,16 @@
           </div>
           <select name="minutes" id="minutes-select" class="btn">
             <option>Minutes</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="60">1</option>
+            <option value="120">2</option>
+            <option value="180">3</option>
+            <option value="240">4</option>
+            <option value="300">5</option>
+            <option value="360">6</option>
+            <option value="420">7</option>
+            <option value="480">8</option>
+            <option value="540">9</option>
+            <option value="600">10</option>
           </select>
         </div>
         <div class="all-matches-container radio-container-memory flex">
@@ -60,7 +65,9 @@
         <h2 class="h2-memory">To Start</h2>
       </div>
 
-      <div class="message message-memory start-message-memory"></div>
+      <div class="start-message-memory game-mode-container flex hidden">
+        <h2 class="start-message-memory-text h2-memory-start-section"></h2>
+      </div>
     </section>
     <main class="main-memory hidden">
       <section class="cards-section grid"></section>
@@ -82,7 +89,7 @@
         </div>
       </section>
       <div class="game-container-memory clock-memory-container flex">
-        <div class="clock-memory"></div>
+        <div class="clock-memory btn"></div>
 
         <button class="btn-start-over btn-memory btn">Start Over</button>
       </div>
