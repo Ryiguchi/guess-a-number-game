@@ -239,11 +239,18 @@ const changeActivePlayer = function () {
   turnCardNum = 1;
   playing = true;
   if (turn === 1) {
-    player1ContainerEl.style.filter = "grayscale(.8)";
+    player1ContainerEl.style.filter = "grayscale(1)";
+    player2ContainerEl.style.boxShadow =
+      "inset 2px 2px 0 #184114, inset -2px -2px 0 #184114, inset -2px 2px 0 #184114, inset 2px -2px 0 #184114";
+    player1ContainerEl.style.boxShadow = "none";
     player2ContainerEl.style.filter = "none";
     gameMessage.textContent = "Player 2's turn...";
   } else {
-    player2ContainerEl.style.filter = "grayscale(.8)";
+    player2ContainerEl.style.filter = "grayscale(1)";
+    player1ContainerEl.style.boxShadow =
+      "inset 2px 2px 0 #184114, inset -2px -2px 0 #184114, inset -2px 2px 0 #184114, inset 2px -2px 0 #184114";
+    player2ContainerEl.style.boxShadow = "none";
+
     player1ContainerEl.style.filter = "none";
     gameMessage.textContent = "Player 1's turn...";
   }

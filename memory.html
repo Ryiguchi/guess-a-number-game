@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -24,9 +24,20 @@
       <span class="flex">Y</span>
     </div>
     <section class="start-section-memory flex flex-col">
+      <div class="game-mode-container flex flex-col">
+        <h2 class="h2-memory h2-memory-start-section">
+          Choose the game difficulty:
+        </h2>
+        <select id="difficulty-select" class="btn">
+          <option>Difficulty</option>
+          <option value="12">Easy</option>
+          <option value="20">Medium</option>
+          <option value="30">Hard</option>
+        </select>
+      </div>
       <div class="game-mode-container">
         <h2 class="h2-memory h2-memory-start-section">Choose the game mode:</h2>
-        <div class="input-time-container flex">
+        <div class="input-time-container option-container flex">
           <div class="timed-container radio-container-memory flex">
             <input
               type="radio"
@@ -34,7 +45,7 @@
               class="input-memory"
               id="timed"
             />
-            <label for="timed">Timed</label>
+            <label for="timed">Time</label>
           </div>
           <select name="minutes" id="minutes-select" class="btn">
             <option>Minutes</option>
@@ -50,7 +61,9 @@
             <option value="600">10</option>
           </select>
         </div>
-        <div class="all-matches-container radio-container-memory flex">
+        <div
+          class="input-no-time-container radio-container-memory option-container flex"
+        >
           <input
             type="radio"
             name="game-mode"
@@ -58,24 +71,14 @@
             id="all-matches"
             checked
           />
-          <label for="all-matches">When all matched are found</label>
+          <label for="all-matches">No Time</label>
         </div>
       </div>
-      <div class="game-mode-container flex flex-col">
-        <h2 class="h2-memory h2-memory-start-section">
-          Choose the game difficulty:
-        </h2>
-        <select id="difficulty-select" class="btn">
-          <option>Difficulty</option>
-          <option value="12">Easy</option>
-          <option value="20">Medium</option>
-          <option value="30">Hard</option>
-        </select>
-      </div>
+
       <div class="press-play-container-memory flex">
-        <h2 class="h2-memory">Press</h2>
-        <button class="play-btn btn btn-memory">Play</button>
-        <h2 class="h2-memory">To Start</h2>
+        <!-- <h2 class="h2-memory">Press</h2> -->
+        <button class="play-btn btn btn-memory">Play!</button>
+        <!-- <h2 class="h2-memory">To Start</h2> -->
       </div>
 
       <div class="start-message-memory game-mode-container flex hidden">
@@ -83,28 +86,35 @@
       </div>
     </section>
     <main class="main-memory hidden">
+      <section class="player-section-memory grid grid-col-2">
+        <div
+          class="game-container-memory player-container player-1-container flex"
+        >
+          <h2 class="player">Player 1:</h2>
+          <h2 class="player-1-score player-score">0</h2>
+        </div>
+        <div
+          class="game-container-memory player-container player-2-container flex"
+        >
+          <h2 class="player">Player 2:</h2>
+          <h2 class="player-2-score player-score">0</h2>
+        </div>
+      </section>
       <section class="cards-section grid"></section>
       <div
         class="message-memory game-message-memory game-container-memory flex"
       ></div>
-      <section class="player-section-memory grid grid-col-2">
-        <div
-          class="game-container-memory player-container player-1-container flex flex-col"
-        >
-          <h2 class="player">Player 1</h2>
-          <h2 class="player-1-score">0</h2>
-        </div>
-        <div
-          class="game-container-memory player-container player-2-container flex flex-col"
-        >
-          <h2 class="player">Player 2</h2>
-          <h2 class="player-2-score">0</h2>
-        </div>
-      </section>
-      <div class="game-container-memory clock-memory-container flex">
-        <div class="clock-memory btn"></div>
 
-        <button class="btn-start-over btn-memory btn">Start Over</button>
+      <div class="clock-memory-container flex">
+        <div
+          class="clock-memory btn-memory clock-memory-container-btn btn flex"
+        ></div>
+
+        <button
+          class="btn-start-over btn-memory clock-memory-container-btn btn"
+        >
+          Start Over
+        </button>
       </div>
     </main>
   </body>

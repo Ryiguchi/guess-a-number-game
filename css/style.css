@@ -146,8 +146,8 @@ input:focus {
 }
 
 .btn {
-  font-size: 1.6rem;
-  text-transform: uppercase;
+  font-size: 1.8rem;
+  letter-spacing: 0.8px;
 
   color: inherit;
 
@@ -462,8 +462,9 @@ tfoot {
 /* **************************** */
 
 .body-memory {
+  font-family: "Raleway";
   color: #333;
-  background: linear-gradient(to bottom right, #1644cf, #098858);
+  background: linear-gradient(to right, #7396e7, #3c5797);
 
   max-width: 40rem;
   padding: 0 1rem;
@@ -472,14 +473,13 @@ tfoot {
 
 /* START SECTION ************* */
 .start-section-memory {
-  max-width: 40rem;
+  max-width: 35rem;
   margin: 0 auto;
 }
 
 .h1-memory {
   gap: 0.4rem;
-  font-family: "Fuzzy Bubbles";
-  font-weight: 700;
+  font-weight: 400;
   font-size: 3.6rem;
   color: #333;
   margin-bottom: 3rem;
@@ -489,6 +489,7 @@ tfoot {
 .h1-memory span {
   width: 5rem;
   height: 5rem;
+  background: linear-gradient(to bottom left, #ccc9f8, #9a98be);
 
   border-radius: 5px;
 
@@ -496,29 +497,10 @@ tfoot {
     inset 0.2rem -0.2rem 0.3rem #fff;
 }
 
-.h1-memory span:first-child {
-  background-color: #02ca02;
-}
-.h1-memory span:nth-child(2) {
-  background-color: #2836ff;
-}
-.h1-memory span:nth-child(3) {
-  background-color: #e63939;
-}
-.h1-memory span:nth-child(4) {
-  background-color: #9e3ddf;
-}
-.h1-memory span:nth-child(5) {
-  background-color: #d68100;
-}
-.h1-memory span:nth-child(6) {
-  background-color: #cfc100;
-}
-
 .game-mode-container {
   color: var(--memory-secondary-tint-2);
-  background-color: #cdc8e4;
-
+  background: linear-gradient(to bottom left, #ccc9f8, #9a98be);
+  border: 1px solid #000;
   width: 100%;
   padding: 2rem 1rem;
   border-radius: 5px;
@@ -530,12 +512,20 @@ tfoot {
   color: var(--memory-secondary-tint-2);
   text-align: center;
 
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.option-container {
+  gap: 6rem;
+  margin-bottom: 2rem;
 }
 
 .input-time-container {
-  gap: 2rem;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+}
+
+.input-no-time-container {
+  justify-content: flex-start;
 }
 
 .start-section-memory label {
@@ -546,9 +536,15 @@ tfoot {
   gap: 1rem;
 }
 
+.start-section-memory .option-container {
+  margin: 0 2rem 0 2rem;
+}
+
 #minutes-select,
 .btn-memory,
 #difficulty-select {
+  font-family: inherit;
+  text-align: center;
   color: var(--memory-primary-shade-2);
   background-color: var(--memory-secondary-color);
 }
@@ -557,6 +553,18 @@ tfoot {
   gap: 1rem;
   padding-left: 1.8rem;
   margin-bottom: 2.4rem;
+}
+
+.play-btn {
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  width: 15rem;
+  height: 6rem;
+}
+
+.start-message-memory-text {
+  margin-bottom: 0;
 }
 
 /* GAME SECTION ***************** */
@@ -570,7 +578,7 @@ tfoot {
 .card-container {
   background-color: transparent;
 
-  border-radius: 5px;
+  border-radius: 10px;
 
   aspect-ratio: 1/1;
   perspective: 100rem;
@@ -590,7 +598,7 @@ tfoot {
   width: 100%;
   height: 100%;
 
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 
   transition: transform 0.8s;
@@ -599,8 +607,7 @@ tfoot {
 
 .card-front,
 .card-back {
-  background-color: #ab9fd6;
-  border-radius: 5px;
+  border-radius: 10px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -608,7 +615,12 @@ tfoot {
   backface-visibility: hidden;
 }
 
+.card-front {
+  background: linear-gradient(to bottom left, #ccc9f8, #9a98be);
+}
+
 .card-back {
+  background-color: #eee;
   transform: rotateY(180deg);
 }
 
@@ -626,7 +638,7 @@ tfoot {
 }
 
 .game-container-memory {
-  background-color: var(--memory-primary-shade-2);
+  background-color: #bde6b9;
   border-radius: 5px;
   box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 
@@ -635,19 +647,33 @@ tfoot {
 
 .game-message-memory,
 .clock-memory {
-  min-height: 3.9rem;
+  height: 5rem;
 }
 
 .player-container {
-  color: #eee;
-  min-height: 6rem;
+  gap: 2rem;
+  color: #333;
+  min-height: 5rem;
+  background-color: #53de44;
 }
 
-.player-1-container {
-  background-color: red;
+.player-container h2:nth-child(2) {
+  font-size: 3.6rem;
 }
-.player-2-container {
-  background-color: rgb(0, 0, 255);
+
+.player-container h2:first-child {
+  font-size: 2.4rem;
+}
+
+.clock-memory-container {
+  /* justify-content: space-between; */
+  gap: 1rem;
+}
+
+.clock-memory-container-btn {
+  font-size: 2.4rem;
+  width: 100%;
+  height: 5rem;
 }
 
 /*  */
