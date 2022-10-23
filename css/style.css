@@ -36,6 +36,8 @@
   --memory-tetriary-shade-2: #fff1aa;
   --memory-tetriary-tint-1: #806e15;
   --memory-tetriary-tint-2: #554700;
+
+  --small-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -460,8 +462,8 @@ tfoot {
 /* **************************** */
 
 .body-memory {
-  color: var(--memory-tetriary-shade-2);
-  background-color: var(--memory-primary-color);
+  color: #333;
+  background: linear-gradient(to bottom right, #1644cf, #098858);
 
   max-width: 40rem;
   padding: 0 1rem;
@@ -475,13 +477,47 @@ tfoot {
 }
 
 .h1-memory {
+  gap: 0.4rem;
+  font-family: "Fuzzy Bubbles";
+  font-weight: 700;
+  font-size: 3.6rem;
+  color: #333;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
 
+.h1-memory span {
+  width: 5rem;
+  height: 5rem;
+
+  border-radius: 5px;
+
+  box-shadow: var(--small-shadow), inset -0.2rem 0.2rem 0.3rem #fff,
+    inset 0.2rem -0.2rem 0.3rem #fff;
+}
+
+.h1-memory span:first-child {
+  background-color: #02ca02;
+}
+.h1-memory span:nth-child(2) {
+  background-color: #2836ff;
+}
+.h1-memory span:nth-child(3) {
+  background-color: #e63939;
+}
+.h1-memory span:nth-child(4) {
+  background-color: #9e3ddf;
+}
+.h1-memory span:nth-child(5) {
+  background-color: #d68100;
+}
+.h1-memory span:nth-child(6) {
+  background-color: #cfc100;
+}
+
 .game-mode-container {
   color: var(--memory-secondary-tint-2);
-  background-color: var(--memory-primary-shade-2);
+  background-color: #cdc8e4;
 
   width: 100%;
   padding: 2rem 1rem;
@@ -533,15 +569,19 @@ tfoot {
 .card-container {
   background-color: transparent;
 
-  border-radius: 2px;
+  border-radius: 5px;
 
   aspect-ratio: 1/1;
   perspective: 100rem;
 }
 
-.card-container img {
+.card-back img {
   /* max-width: 75%; */
-  max-width: 100%;
+  max-width: 80%;
+}
+
+.card-front img {
+  max-width: 80%;
 }
 
 .card-inner-container {
@@ -549,13 +589,16 @@ tfoot {
   width: 100%;
   height: 100%;
 
+  border-radius: 5px;
+  box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
 
 .card-front,
 .card-back {
-  background-color: var(--memory-secondary-shade-1);
+  background-color: #ab9fd6;
   border-radius: 5px;
   position: absolute;
   width: 100%;
@@ -584,6 +627,7 @@ tfoot {
 .game-container-memory {
   background-color: var(--memory-primary-shade-2);
   border-radius: 5px;
+  box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
 
   margin-bottom: 1rem;
 }
@@ -594,10 +638,15 @@ tfoot {
 }
 
 .player-container {
+  color: #eee;
   min-height: 6rem;
 }
 
-.player {
+.player-1-container {
+  background-color: red;
+}
+.player-2-container {
+  background-color: rgb(0, 0, 255);
 }
 
 /*  */

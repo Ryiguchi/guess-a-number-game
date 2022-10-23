@@ -4,12 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
     <script defer src="js/memory.js"></script>
   </head>
   <body class="body-memory">
-    <h1 class="h1-memory title">Memory</h1>
+    <div class="h1-memory title flex">
+      <span class="flex">M</span>
+      <span class="flex">E</span>
+      <span class="flex">M</span>
+      <span class="flex">O</span>
+      <span class="flex">R</span>
+      <span class="flex">Y</span>
+    </div>
     <section class="start-section-memory flex flex-col">
       <div class="game-mode-container">
         <h2 class="h2-memory h2-memory-start-section">Choose the game mode:</h2>
@@ -49,9 +62,9 @@
         </h2>
         <select id="difficulty-select" class="btn">
           <option>Difficulty</option>
-          <option value="12">Easy (12 cards)</option>
-          <option value="20">Medium (20 cards)</option>
-          <option value="30">Hard (30 cards)</option>
+          <option value="12">Easy</option>
+          <option value="20">Medium</option>
+          <option value="30">Hard</option>
         </select>
       </div>
       <div class="press-play-container-memory flex">
