@@ -173,8 +173,8 @@ const dealCards = function (deck) {
   <div class="card-front flex">
     <img src="img/memory/back.svg" alt="Chas Academy Logo"  class="card-img" />
   </div>
-    <div class="card-back flex" data-num="${card}" data-card="${i}">
-      <img src="img/marvel/${card}.jpeg" alt="Logo" data-num="${card}" data-card="${i}" />
+    <div class="card-back flex">
+      <img src="img/memory/${card}.png" alt="Logo"  />
     </div>
   </div>
 </div>`;
