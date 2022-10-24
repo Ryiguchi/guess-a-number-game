@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Pig Game</title>
+    <script defer src="pig.js"></script>
+  </head>
+  <body class="body-pig">
+    <div class="title-container-pig">
+      <h1 class="title-pig-1 title-pig">Pig Game</h1>
+      <h1 class="title-pig-2 title-pig">Pig Game</h1>
+    </div>
+    <section class="start-section-pig flex flex-col">
+      <div class="game-container game-container-pig flex flex-col">
+        <h2 class="h2-pig options-title-pig">Options</h2>
+        <label for="points">Points to win</label>
+        <input
+          type="number"
+          name="points"
+          id="points-pig"
+          min="50"
+          max="1000"
+          step="50"
+        />
+        <div class="sixes-container flex">
+          <input type="checkbox" name="sixes" id="sixes-pig" />
+          <label for="sixes" class="flex sixes-label">
+            Double sixes rule
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="info-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+              />
+            </svg>
+          </label>
+          <div class="game-container info-modal info-modal-pig hidden">
+            If a player rolls a "6", 2 times in a row in the same turn, the
+            player loses all of their points!
+          </div>
+        </div>
+      </div>
+      <button class="btn play-btn btn-pig">Play!</button>
+      <div
+        class="start-message-pig game-container game-container-pig flex hidden"
+      >
+        <h2 class="h2-pig start-message-text-pig">
+          The number you entered is invalid!
+        </h2>
+      </div>
+    </section>
+    <main class="main-pig hidden">
+      <button class="btn btn-pig start-over-btn-pig flex">Start Over</button>
+      <section
+        class="player-container-pig player-1-container-pig flex active-player-pig"
+      >
+        <div class="score-container-pig flex flex-col">
+          <p class="h1-pig player-title-pig">Player 1</p>
+          <p class="score-pig player-1-score-pig">0</p>
+        </div>
+        <div class="score-container-pig">
+          <div class="current-container-inner flex flex-col">
+            <p class="current-container-title">Current</p>
+            <p class="current-score current-score-player-1">0</p>
+          </div>
+        </div>
+      </section>
+      <section class="player-container-pig player-2-container-pig flex">
+        <div class="score-container-pig flex flex-col">
+          <p class="h1-pig player-title-pig">Player 2</p>
+          <p class="score-pig player-2-score-pig">0</p>
+        </div>
+        <div class="score-container-pig">
+          <div class="current-container-inner flex flex-col">
+            <p class="current-container-title">Current</p>
+            <p class="current-score current-score-player-2">0</p>
+          </div>
+        </div>
+      </section>
+      <section class="dice-section flex">
+        <button class="btn btn-pig roll-btn flex">Roll</button>
+        <div class="dice-container">
+          <img src="img/pig/dice-1.png" alt="Die 1" class="dice-img" />
+        </div>
+        <button class="btn btn-pig hold-btn flex">Hold</button>
+      </section>
+    </main>
+  </body>
+</html>

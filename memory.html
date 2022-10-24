@@ -24,7 +24,7 @@
       <span class="flex">Y</span>
     </div>
     <section class="start-section-memory flex flex-col">
-      <div class="game-mode-container flex flex-col">
+      <div class="game-container game-container-memory flex flex-col">
         <h2 class="h2-memory">Choose the game difficulty:</h2>
         <select id="difficulty-select" class="btn">
           <option>Difficulty</option>
@@ -33,7 +33,7 @@
           <option value="30">Hard</option>
         </select>
       </div>
-      <div class="game-mode-container">
+      <div class="game-container game-container-memory">
         <h2 class="h2-memory">Choose the game mode:</h2>
         <div class="input-time-container option-container flex">
           <div class="radio-container-memory flex">
@@ -79,27 +79,25 @@
         <!-- <h2 class="h2-memory">To Start</h2> -->
       </div>
 
-      <div class="start-message-memory game-mode-container flex hidden">
+      <div
+        class="start-message-memory game-container game-container-memory flex hidden"
+      >
         <h2 class="start-message-memory-text h2-memory-start-section"></h2>
       </div>
     </section>
     <main class="main-memory hidden">
       <section class="player-section-memory grid grid-col-2">
-        <div
-          class="game-container-memory player-container player-1-container flex"
-        >
+        <div class="game-container player-container player-1-container flex">
           <h2 class="player">Player 1:</h2>
           <h2 class="player-1-score player-score">0</h2>
         </div>
-        <div
-          class="game-container-memory player-container player-2-container flex"
-        >
+        <div class="game-container player-container player-2-container flex">
           <h2 class="player">Player 2:</h2>
           <h2 class="player-2-score player-score">0</h2>
         </div>
       </section>
       <section class="cards-section grid"></section>
-      <div class="game-message-memory game-container-memory flex"></div>
+      <div class="game-message-memory game-container flex"></div>
 
       <div class="clock-memory-container flex">
         <div
