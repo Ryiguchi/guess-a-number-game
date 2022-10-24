@@ -3,13 +3,13 @@
 /////////////////// SELECTORS ///////////////
 /////////////////////////////////////////////
 const startSection = document.querySelector(".start-section-rps");
-const gameSection = document.querySelector(".game-section");
+const gameSection = document.querySelector(".game-section-rps");
 const actionSection = document.querySelector(".action-section");
 const choiceSection = document.querySelector(".choice-section");
 const inputNumWins = document.querySelector(".input-rps");
 const moveChoices = document.querySelector(".all-choice-img-container");
 const allChoiceImgs = document.querySelectorAll(".choice-img-container");
-const body = document.querySelector(".body__rps");
+const body = document.querySelector(".body-rps");
 
 const btnPlay = document.querySelector(".play-btn");
 const btnStartOver = document.querySelector(".btn-start-over");
@@ -31,6 +31,7 @@ const computerChoiceImg = document.querySelector(".computer-action-img");
 /////////////////////////////////////////////
 
 let numWins,
+  playing,
   playerChoice,
   computerChoice,
   playerWin,
@@ -45,38 +46,35 @@ let numWins,
 
 // SETUP/////////////////////////////////////
 
-// SHOWS THE START MENU //
-const initStartState = function () {
-  startSection.classList.remove("hidden");
-  gameSection.classList.add("hidden");
-  choiceSection.classList.remove("hidden");
-
-  body.style.backgroundColor = "var(--rps-secondary-color)";
-  mainTitle.style.color = "var(--rps-primary-shade-2)";
-  tableBody.innerHTML = "";
-};
-
 // INITIALIZES GAME //
 const initGameState = function () {
-  round = 1;
-  playerTotal = 0;
-  computerTotal = 0;
-
-  //-- set number of wins to win game
-  numWins = Number(inputNumWins.value);
-
   // --check if its a valid number
-  console.log(numWins);
-  if (isNaN(numWins) || numWins < 1 || numWins > 10) {
+  if (numWins < 1 || numWins > 10) {
     startMessage.classList.remove("hidden");
     startMessage.textContent = "You entered an invalid number! Try again!";
     return;
   }
 
+  //-- set number of wins to win game
+  numWins = Number(inputNumWins.value);
+
+  tableBody.innerHTML = "";
+  choiceSectionTitle.textContent = "Choose your move...";
+  playerChoiceImg.src = `img/1.png`;
+  computerChoiceImg.src = `img/1.png`;
+  gameSection.classList.remove("end-game");
+  round = 1;
+  playerTotal = 0;
+  computerTotal = 0;
+  playing = true;
   // --displays Game screen and number of wins
   scoreTitle.textContent = `First to ${numWins} wins!`;
-  startSection.classList.add("hidden");
-  gameSection.classList.remove("hidden");
+  toggleScreen();
+};
+
+const toggleScreen = function () {
+  startSection.classList.toggle("hidden");
+  gameSection.classList.toggle("hidden");
 };
 
 // GENERATES A RANDOM NUMBER //
@@ -88,24 +86,19 @@ const getRandomNum = function (min, max) {
 
 // GAME ANIMATIONS //
 const play = function () {
-  removeActionSection(300);
-  showActionSection(600, "Rock...");
-  removeActionSection(900);
-  showActionSection(1200, "Papper...");
-  removeActionSection(1500);
+  let time = 300;
+  let op = 0;
+  while (time <= 1500) {
+    toggleActionSection(time, op);
+    time += 300;
+    op = (op + 1) % 2;
+  }
   roundResult();
 };
 
-const removeActionSection = function (timeout) {
+const toggleActionSection = function (timeout, op) {
   setTimeout(() => {
-    actionSection.style.opacity = 0;
-  }, timeout);
-};
-
-const showActionSection = function (timeout, str) {
-  setTimeout(() => {
-    actionSection.style.opacity = 1;
-    actionTitle.textContent = str;
+    actionSection.style.opacity = op;
   }, timeout);
 };
 
@@ -116,7 +109,6 @@ const roundResult = function () {
     playerChoiceImg.src = `img/${playerChoice}.png`;
     computerChoiceImg.src = `img/${computerChoice}.png`;
     actionSection.style.opacity = 1;
-    actionTitle.textContent = "Scissors!";
 
     // --remove green background
     allChoiceImgs.forEach(
@@ -125,15 +117,16 @@ const roundResult = function () {
 
     // Return if tie
     if (playerChoice === computerChoice) {
-      choiceSectionTitle.textContent = "🫤Its a tie!!🫤";
-      choiceDisabled = false;
+      choiceSectionTitle.textContent = "Its a tie!";
+      playing = true;
       return;
     }
-
+    console.log(numWins);
     calcWinner();
     displayTable();
+    if (endGame()) return;
 
-    choiceDisabled = false;
+    playing = true;
   }, 1800);
 };
 
@@ -145,15 +138,13 @@ const calcWinner = function () {
     (playerChoice === 3 && computerChoice === 2)
   ) {
     playerWin = true;
-    choiceSectionTitle.textContent = "😀You Won!!😀";
+    choiceSectionTitle.textContent = "You Won!";
     playerTotal++;
   } else {
     playerWin = false;
-    choiceSectionTitle.textContent = "😢You Lost!!😢";
+    choiceSectionTitle.textContent = "You Lost!";
     computerTotal++;
   }
-  // --check if number of wins has been reached
-  if (playerTotal === numWins || computerTotal === numWins) endGame();
 };
 
 // DISPLAYS ROUND RESULTS ON TABLE
@@ -176,14 +167,15 @@ const displayTable = function () {
 
 // END OF GAME FUNCTION //
 const endGame = function () {
-  // --styling
-  body.style.backgroundColor = "var(--rps-primary-tint-1)";
-  mainTitle.style.color = "var(--rps-primary-shade-2)";
-  choiceSection.classList.add("hidden");
-  // --display winner
-  playerTotal === numWins
-    ? (mainTitle.textContent = "🎉You won the game!!🎉")
-    : (mainTitle.textContent = "😢You lost the game!!😢");
+  if (playerTotal === numWins) {
+    choiceSectionTitle.textContent = `Game over: You won!`;
+    gameSection.classList.add("end-game");
+    return true;
+  } else if (computerTotal === numWins) {
+    choiceSectionTitle.textContent = `Game over: You lost!`;
+    gameSection.classList.add("end-game");
+    return true;
+  }
 };
 
 /////////////////////////////////////////////
@@ -194,13 +186,13 @@ const endGame = function () {
 btnPlay.addEventListener("click", initGameState);
 
 // GOES BACK TO THE START MENU //
-btnStartOver.addEventListener("click", initStartState);
+btnStartOver.addEventListener("click", toggleScreen);
 
 // MAKES A CHOICE AND EXECUTES 1 ROUND //
 moveChoices.addEventListener("click", function (e) {
   // --return if currently playing
-  if (choiceDisabled) return;
-  choiceDisabled = true;
+  if (!playing) return;
+  playing = false;
 
   // --set both players img to 'rock'
   playerChoiceImg.src = `img/1.png`;

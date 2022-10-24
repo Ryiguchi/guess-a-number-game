@@ -8,32 +8,38 @@
     <title>Rock, papper, scissors</title>
     <script defer src="js/rps.js"></script>
   </head>
-  <body class="body__rps">
-    <h1 class="h1-rps title">Rock, Papper, Scissors</h1>
-    <header class="start-section start-section-rps flex flex-col">
-      <div class="input-container flex flex-col">
+  <body class="body-rps">
+    <div class="title-container-rps flex flex-col">
+      <h1 class="h1-rps title">Rock, Papper,</h1>
+      <h1 class="h1-rps title">Scissors</h1>
+    </div>
+    <section class="start-section-rps flex flex-col">
+      <div
+        class="game-container game-container-rps input-container flex flex-col"
+      >
         <label for="num-wins" class="label-num-wins">Number of Wins</label>
         <input
           type="number"
           name="num-wins"
-          class="input-rps title-input flex flex-col"
+          class="input-rps flex flex-col"
           value="5"
           min="1"
           max="10"
         />
       </div>
-      <div class="press-play-container flex">
-        <h2 class="h2-rps">Press</h2>
-        <button class="play-btn btn-rps btn">Play</button>
-        <h2 class="h2-rps">To Start</h2>
+
+      <button class="play-btn btn-rps btn">Play!</button>
+
+      <div
+        class="game-container game-container-rps message message-rps start-message hidden"
+      ></div>
+    </section>
+
+    <main class="game-section-rps flex flex-col hidden">
+      <div class="message-rps game-container game-container-rps flex flex-col">
+        <h2 class="h2-rps choice-title">Choose your next move!</h2>
       </div>
-      <div class="message message-rps start-message hidden"></div>
-    </header>
-
-    <main class="game-section flex flex-col hidden">
-      <section class="action-section">
-        <h2 class="h2-rps action-title action-title-1"></h2>
-
+      <section class="action-section flex flex-col">
         <div class="action-img-container flex">
           <img
             src="img/1.png"
@@ -48,8 +54,9 @@
         </div>
       </section>
       <section class="choice-section">
-        <h2 class="h2-rps choice-title">Choose your next move!</h2>
-        <div class="all-choice-img-container flex">
+        <div
+          class="all-choice-img-container game-container game-container-rps flex"
+        >
           <div class="choice-img-container flex" id="1">
             <img src="img/1.png" alt="Rock Hand" class="choice-img" id="1" />
           </div>
@@ -66,7 +73,7 @@
           </div>
         </div>
       </section>
-      <section class="score-section">
+      <section class="score-section game-container game-container-rps">
         <h2 class="h2-rps score-section-title"></h2>
         <table class="score-table">
           <thead>
