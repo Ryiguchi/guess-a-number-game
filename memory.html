@@ -15,7 +15,7 @@
     <script defer src="js/memory.js"></script>
   </head>
   <body class="body-memory">
-    <div class="h1-memory title flex">
+    <div class="h1-memory flex">
       <span class="flex">M</span>
       <span class="flex">E</span>
       <span class="flex">M</span>
@@ -25,9 +25,7 @@
     </div>
     <section class="start-section-memory flex flex-col">
       <div class="game-mode-container flex flex-col">
-        <h2 class="h2-memory h2-memory-start-section">
-          Choose the game difficulty:
-        </h2>
+        <h2 class="h2-memory">Choose the game difficulty:</h2>
         <select id="difficulty-select" class="btn">
           <option>Difficulty</option>
           <option value="12">Easy</option>
@@ -36,9 +34,9 @@
         </select>
       </div>
       <div class="game-mode-container">
-        <h2 class="h2-memory h2-memory-start-section">Choose the game mode:</h2>
+        <h2 class="h2-memory">Choose the game mode:</h2>
         <div class="input-time-container option-container flex">
-          <div class="timed-container radio-container-memory flex">
+          <div class="radio-container-memory flex">
             <input
               type="radio"
               name="game-mode"
@@ -47,7 +45,7 @@
             />
             <label for="timed">Time</label>
           </div>
-          <select name="minutes" id="minutes-select" class="btn">
+          <select name="minutes" id="minutes-select" class="btn select-memory">
             <option>Minutes</option>
             <option value="60">1</option>
             <option value="120">2</option>
@@ -101,9 +99,7 @@
         </div>
       </section>
       <section class="cards-section grid"></section>
-      <div
-        class="message-memory game-message-memory game-container-memory flex"
-      ></div>
+      <div class="game-message-memory game-container-memory flex"></div>
 
       <div class="clock-memory-container flex">
         <div

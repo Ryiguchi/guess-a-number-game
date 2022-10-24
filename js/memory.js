@@ -22,6 +22,7 @@ const player2ScoreEl = document.querySelector(".player-2-score");
 const player1ContainerEl = document.querySelector(".player-1-container");
 const player2ContainerEl = document.querySelector(".player-2-container");
 const clock = document.querySelector(".clock-memory");
+const chevronElAll = document.querySelectorAll(".chevron-memory");
 
 // ///////////////////////////////////////////
 // ///////////////VARIABLES///////////////////
