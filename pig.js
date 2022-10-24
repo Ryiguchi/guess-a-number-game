@@ -57,7 +57,7 @@ const initGame = function () {
   currentScoreEl.forEach((el) => (el.textContent = 0));
   playerContainersAllEl.forEach((el) => el.classList.remove("winner-pig"));
   currentScore = 0;
-  imgDice.src = "/img/pig/dice-1.png";
+  imgDice.src = "img/pig/dice-1.png";
   lastRoll = 0;
   currentPlayer = 1;
   playing = true;

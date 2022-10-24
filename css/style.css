@@ -693,6 +693,8 @@ tfoot {
   position: absolute;
   top: 50%;
   right: 50%;
+  text-align: center;
+  width: 30rem;
   font-family: "Seymour One";
 }
 
