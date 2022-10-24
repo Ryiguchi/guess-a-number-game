@@ -8,45 +8,49 @@
     <title>Guess a Number</title>
     <script defer src="js/guess-num.js"></script>
   </head>
-  <body class="body__guess-number">
-    <h1 class="h1-guess-num title">Number Guessing Game</h1>
-    <section class="start-section start-section__guess-number grid grid-col-2">
-      <div class="min-input-container flex flex-col">
-        <label for="min" class="label-min">From</label>
-        <input
-          type="text"
-          name="min"
-          class="input-min title-input input-guess-num"
-          value="0"
-        />
-      </div>
-      <div class="max-input-container flex flex-col">
-        <label for="max" class="label-max">To</label>
-        <input
-          type="text"
-          name="max"
-          class="input-max title-input input-guess-num"
-          value="100"
-        />
-      </div>
-      <div class="guesses-input-container flex flex-col">
-        <label for="guesses" class="label-guesses">Number of guesses</label>
-        <input
-          type="number"
-          name="guesses"
-          class="input-guesses title-input input-guess-num"
-          value="5"
-          min="1"
-          step="1"
-        />
+  <body class="body-guess">
+    <div class="title-container-guess">
+      <div class="question-mark">?</div>
+      <h1 class="h1-guess-num title">Guess the #</h1>
+    </div>
+    <section class="start-section flex flex-col">
+      <div class="game-container game-container-guess grid grid-col-2">
+        <div class="min-input-container flex flex-col">
+          <label for="min" class="label-min">From</label>
+          <input
+            type="text"
+            name="min"
+            class="input-min title-input input-guess-num"
+            value="0"
+          />
+        </div>
+        <div class="max-input-container flex flex-col">
+          <label for="max" class="label-max">To</label>
+          <input
+            type="text"
+            name="max"
+            class="input-max title-input input-guess-num"
+            value="100"
+          />
+        </div>
+        <div class="guesses-input-container flex flex-col">
+          <label for="guesses" class="label-guesses">Number of guesses</label>
+          <input
+            type="number"
+            name="guesses"
+            class="input-guesses title-input input-guess-num"
+            value="5"
+            min="1"
+            step="1"
+          />
+        </div>
       </div>
 
-      <div class="press-play-container flex">
-        <h2 class="h2-guess-num">Press</h2>
-        <button class="play-btn btn btn-guess-number">Play</button>
-        <h2 class="h2-guess-num">To Start</h2>
-      </div>
-      <div class="message message-guess-num start-message"></div>
+      <button class="play-btn play-btn- btn btn-guess-number">Play</button>
+
+      <div
+        class="message message-guess-num start-message game-container game-container-guess hidden"
+      ></div>
     </section>
 
     <section class="game-section section flex flex-col hidden">
@@ -70,9 +74,14 @@
         </button>
       </div>
 
-      <div class="message message-guess-num game-message"></div>
-      <div class="previous-guesses-container">
-        <h3 class="h3-guess-num">Your Previous Guesses</h3>
+      <div
+        class="message game-container game-container-guess game-message"
+      ></div>
+      <div
+        class="message previous-guesses-container game-container game-container-guess"
+      >
+        <p>Your Previous Guesses</p>
+        <p class="number-guesses"></p>
         <ul></ul>
       </div>
     </section>
