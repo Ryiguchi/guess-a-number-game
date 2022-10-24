@@ -21,6 +21,7 @@ const player1ScoreEl = document.querySelector(".player-1-score");
 const player2ScoreEl = document.querySelector(".player-2-score");
 const player1ContainerEl = document.querySelector(".player-1-container");
 const player2ContainerEl = document.querySelector(".player-2-container");
+const playerContainersAllEl = document.querySelectorAll(".player-container");
 const clock = document.querySelector(".clock-memory");
 const chevronElAll = document.querySelectorAll(".chevron-memory");
 
@@ -81,6 +82,8 @@ const resetGame = function () {
   turn = 2;
   player1ScoreEl.textContent = 0;
   player2ScoreEl.textContent = 0;
+  playerContainersAllEl.forEach((el) => el.classList.remove("winner-memory"));
+  gameMessage.classList.remove("winner-memory");
   // --set player 1
   changeActivePlayer();
 };
@@ -239,31 +242,26 @@ const resetTurn = function () {
 const changeActivePlayer = function () {
   turnCardNum = 1;
   playing = true;
-  if (turn === 1) {
-    player1ContainerEl.style.filter = "grayscale(1)";
-    player2ContainerEl.style.boxShadow =
-      "inset 2px 2px 0 #184114, inset -2px -2px 0 #184114, inset -2px 2px 0 #184114, inset 2px -2px 0 #184114";
-    player1ContainerEl.style.boxShadow = "none";
-    player2ContainerEl.style.filter = "none";
-    gameMessage.textContent = "Player 2's turn...";
-  } else {
-    player2ContainerEl.style.filter = "grayscale(1)";
-    player1ContainerEl.style.boxShadow =
-      "inset 2px 2px 0 #184114, inset -2px -2px 0 #184114, inset -2px 2px 0 #184114, inset 2px -2px 0 #184114";
-    player2ContainerEl.style.boxShadow = "none";
+  playerContainersAllEl.forEach((el) =>
+    el.classList.toggle("active-player-memory")
+  );
 
-    player1ContainerEl.style.filter = "none";
-    gameMessage.textContent = "Player 1's turn...";
-  }
+  turn === 1
+    ? (gameMessage.textContent = "Player 2's turn...")
+    : (gameMessage.textContent = "Player 1's turn...");
+
   turn = ((turn + 2) % 2) + 1;
 };
 
 const gameEnd = function () {
   playing = false;
+  gameMessage.classList.add("winner-memory");
   if (player1Score > player2Score) {
     gameMessage.textContent = "Player 1 wins!!!";
+    player1ContainerEl.classList.add("winner");
   } else if (player2Score > player1Score) {
     gameMessage.textContent = "Player 2 wins!!!";
+    player2ContainerEl.classList.add("winner-memory");
   } else gameMessage.textContent = "Its a tie!!!";
 };
 // ///////////////////////////////////////////

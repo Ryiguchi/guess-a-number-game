@@ -500,7 +500,6 @@ tfoot {
 }
 
 .game-container {
-  border: 1px solid #000;
   width: 100%;
   padding: 2rem 1rem;
   border-radius: 5px;
@@ -522,7 +521,7 @@ tfoot {
 #difficulty-select {
   font-family: inherit;
   text-align: center;
-  color: var(--memory-primary-shade-2);
+  color: #ccc;
   background-color: var(--memory-secondary-color);
 }
 
@@ -581,10 +580,12 @@ tfoot {
 }
 
 .player-container {
+  font-weight: 300;
   gap: 2rem;
   color: var(--memory-secondary-tint-2);
   min-height: 5rem;
-  background-color: #53de44;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
 }
 
 .player-container h2:nth-child(2) {
@@ -593,6 +594,11 @@ tfoot {
 
 .player-container h2:first-child {
   font-size: 2.4rem;
+}
+
+.active-player-memory {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--memory-secondary-tint-2);
 }
 
 .cards-section {
@@ -647,7 +653,7 @@ tfoot {
 
 .game-message-memory {
   font-weight: 600;
-  background-color: #bde6b9;
+  background-color: rgba(255, 255, 255, 0.5);
 
   margin-bottom: 1rem;
 }
@@ -664,6 +670,11 @@ tfoot {
 .clock-memory-container-btn {
   font-size: inherit;
   width: 100%;
+}
+
+.winner-memory {
+  background-color: #2f2f2f;
+  color: #eee;
 }
 
 /* **************************** */
