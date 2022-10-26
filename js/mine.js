@@ -65,8 +65,11 @@ const resetValues = function () {
 
 const getGameValues = function () {
   difficulty = Number(difficultySelect.value);
-  if (difficulty === 9) numMines = 10;
-  else numMines = 40;
+  if (difficulty === 9) {
+    numMines = 10;
+  } else {
+    numMines = 40;
+  }
   mineCountEl.textContent = minesRemaining = numMines;
 };
 
