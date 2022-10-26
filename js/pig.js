@@ -143,7 +143,10 @@ const winner = function (player) {
   player === 1
     ? player1ContainerEl.classList.add("winner-pig")
     : player2ContainerEl.classList.add("winner-pig");
-  currentScoreEl.forEach((el) => (el.textContent = "WINNER!"));
+  currentScoreEl.forEach((el) => {
+    el.textContent = "WINNER!";
+    el.style.fontSize = "2.4rem";
+  });
 };
 // ///////////////////////////////////////////
 // ////////// EVENT LISTENERS ////////////////
