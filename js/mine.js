@@ -20,7 +20,7 @@ const timerEl = document.querySelector(".timer-mine");
 // ///////////////////////////////////////////
 // ///////////////VARIABLES///////////////////
 // ///////////////////////////////////////////
-let difficulty, numMines, playing, openCells, minesRemaining, timer;
+let numRows, numMines, playing, openCells, minesRemaining, timer;
 let arr = [];
 let cellTops = [];
 let cellBottoms = [];
@@ -39,7 +39,6 @@ const startGame = function () {
   setCellValues();
   displayCellValues();
   style();
-  console.log(arr);
 };
 
 const toggleScreens = function () {
@@ -64,8 +63,8 @@ const resetValues = function () {
 };
 
 const getGameValues = function () {
-  difficulty = Number(difficultySelect.value);
-  if (difficulty === 9) {
+  numRows = Number(difficultySelect.value);
+  if (numRows === 9) {
     numMines = 10;
   } else {
     numMines = 40;
@@ -74,8 +73,8 @@ const getGameValues = function () {
 };
 
 const createCoorArray = function () {
-  for (let i = 1; i <= difficulty; i++) {
-    for (let j = 1; j <= difficulty; j++) {
+  for (let i = 1; i <= numRows; i++) {
+    for (let j = 1; j <= numRows; j++) {
       arr.push({ coor: [j, i] });
     }
   }
@@ -87,7 +86,7 @@ const createCoorArray = function () {
 };
 
 const createBoard = function () {
-  gameBoard.classList.add(`grid-col-${difficulty}`);
+  gameBoard.classList.add(`grid-col-${numRows}`);
   let htmlStr = "";
   arr.forEach(
     (el, i) =>
@@ -117,7 +116,7 @@ const setMines = function () {
   for (let i = 1; i <= numMines; i++) {
     let num;
     do {
-      num = getRandomNum(0, difficulty ** 2 - 1);
+      num = getRandomNum(0, numRows ** 2 - 1);
     } while (randomNumbers.includes(num));
     arr[num].mine = true;
     randomNumbers.push(num);
@@ -129,48 +128,28 @@ const getRandomNum = function (min, max) {
 };
 
 const getSurroundingElements = function (x, y) {
-  const surroundingElements = [];
-  if (x > 1 && y > 1)
-    surroundingElements.push(
-      arr[
-        arr.findIndex((obj) => obj.coor[0] === x - 1 && obj.coor[1] === y - 1)
-      ]
+  const surroundingCoords = [
+    [x - 1, y - 1], // NW
+    [x, y - 1], // N
+    [x + 1, y - 1], // NE
+    [x + 1, y], // E
+    [x + 1, y + 1], // SE
+    [x, y + 1], // S
+    [x - 1, y + 1], // SW
+    [x - 1, y], // W
+  ];
+  return surroundingCoords
+    .filter(
+      (el) => el[0] > 0 && el[0] <= numRows && el[1] > 0 && el[1] <= numRows
+    )
+    .map(
+      (coord) =>
+        arr[
+          arr.findIndex(
+            (obj) => obj.coor[0] === coord[0] && obj.coor[1] === coord[1]
+          )
+        ]
     );
-  if (y > 1)
-    surroundingElements.push(
-      arr[arr.findIndex((obj) => obj.coor[0] === x && obj.coor[1] === y - 1)]
-    );
-  if (x < difficulty && y > 1)
-    surroundingElements.push(
-      arr[
-        arr.findIndex((obj) => obj.coor[0] === x + 1 && obj.coor[1] === y - 1)
-      ]
-    );
-  if (x < difficulty)
-    surroundingElements.push(
-      arr[arr.findIndex((obj) => obj.coor[0] === x + 1 && obj.coor[1] === y)]
-    );
-  if (x < difficulty && y < difficulty)
-    surroundingElements.push(
-      arr[
-        arr.findIndex((obj) => obj.coor[0] === x + 1 && obj.coor[1] === y + 1)
-      ]
-    );
-  if (y < difficulty)
-    surroundingElements.push(
-      arr[arr.findIndex((obj) => obj.coor[0] === x && obj.coor[1] === y + 1)]
-    );
-  if (x > 1 && y < difficulty)
-    surroundingElements.push(
-      arr[
-        arr.findIndex((obj) => obj.coor[0] === x - 1 && obj.coor[1] === y + 1)
-      ]
-    );
-  if (x > 1)
-    surroundingElements.push(
-      arr[arr.findIndex((obj) => obj.coor[0] === x - 1 && obj.coor[1] === y)]
-    );
-  return surroundingElements;
 };
 
 const surroundingMines = function (array) {
@@ -192,14 +171,14 @@ const style = function () {
   arr
     .reduce(
       (acc, cur, i) =>
-        (i + 1) % difficulty === 0 ? (acc = [...acc, cur.elementBottom]) : acc,
+        (i + 1) % numRows === 0 ? (acc = [...acc, cur.elementBottom]) : acc,
       []
     )
     .forEach((el) => (el.style.borderRight = 0));
   arr
     .reduce(
       (acc, cur, i, arr) =>
-        i >= difficulty * (difficulty - 1)
+        i >= numRows * (numRows - 1)
           ? (acc = [...acc, cur.elementBottom])
           : acc,
       []
@@ -216,8 +195,7 @@ const cellClick = function (cell) {
   obj.open = true;
   openSurroundingElements(obj);
   openCells++;
-  console.log(openCells, numMines);
-  if (openCells === difficulty ** 2 - numMines) gameEnd("win");
+  if (openCells === numRows ** 2 - numMines) gameEnd("win");
   playing = true;
 };
 
@@ -297,7 +275,6 @@ gameBoard.addEventListener("click", function (e) {
   )
     return;
   playing = false;
-  console.log(timer);
   if (!timer) startTimer();
   cellClick(e.target);
 });

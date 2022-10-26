@@ -16,10 +16,7 @@ const btnGuess = document.querySelector(".guess-btn");
 const btnReset = document.querySelector(".reset-btn-guess-num");
 
 const body = document.querySelector("body");
-const title = document.querySelector("h1");
 const numberGuessesEl = document.querySelector(".number-guesses");
-const pressPlayContainer = document.querySelector(".press-play-container");
-const secretNumContainer = document.querySelector(".secret-number-container");
 const gameSection = document.querySelector(".game-section");
 const startSection = document.querySelector(".start-section");
 
@@ -35,7 +32,6 @@ const initState = function () {
   gameSection.classList.remove("game-over-guess");
 
   // clearing
-  inputUserGuess.value = "";
   textStartMessage.textContent = "";
   textGameMessage.textContent = "";
   list.innerHTML = "";
@@ -46,30 +42,21 @@ const initState = function () {
 const init = function () {
   // Set values to predetermined values
   numMin = Number(inputSetMin.value);
-  if (isNaN(numMin)) {
-    displayInvalidMessage("start");
-    return;
-  }
-
   numMax = Number(inputSetMax.value);
-  if (isNaN(numMax) || numMax < numMin) {
-    displayInvalidMessage("start");
-    return;
-  }
-
   maxTurns = Number(inputSetGuesses.value);
-  if (isNaN(maxTurns) || maxTurns < 1) {
+
+  if (
+    isNaN(numMin) ||
+    isNaN(numMax) ||
+    numMax < numMin ||
+    isNaN(maxTurns) ||
+    maxTurns < 1
+  ) {
     displayInvalidMessage("start");
     return;
   }
-
-  // Showing start screen / hiding playing screen
-  toggleScreens();
-
-  // Set text
-  textGameMessage.textContent = "";
+  initState();
   numberGuessesEl.textContent = `(out of ${maxTurns})`;
-
   // Create label for the guess input box
   textGuess.textContent = `Guess a number, ${numMin} - ${numMax}`;
 
@@ -85,24 +72,11 @@ const toggleScreens = function () {
   gameSection.classList.toggle("hidden");
 };
 
-const validNum = function (num) {
-  return isNaN(num) ? false : true;
-};
-
 // Tells the user that they have entered an invalid number
 const displayInvalidMessage = function (el) {
-  if (el === "start") {
-    textStartMessage.classList.remove("hidden");
-    textStartMessage.textContent = `You entered an invalid number! Try again ...`;
-  } else {
-    textGameMessage.classList.remove("hidden");
-    textGameMessage.textContent = `You entered an invalid number! Try again ...`;
-  }
-};
-
-/////////// Check if a guess is valid
-const isValid = function (num) {
-  return isNaN(num) || num < numMin || num > numMax ? false : true;
+  element === "start" ? textStartMessage : textGameMessage;
+  element.classList.remove("hidden");
+  element.textContent = `You entered an invalid number! Try again ...`;
 };
 
 ///////// Returns a random number between 'min' and 'max'
@@ -112,9 +86,6 @@ const getRandomNum = function (min, max) {
 
 ////////// Displays message and lists the guess
 const displayGuess = function (guess, secretNum) {
-  // clear guess value
-  inputUserGuess.value = "";
-
   // determine if guess is too high or too low
   const tooHigh = guess > secretNum ? true : false;
 
@@ -132,8 +103,6 @@ const displayGuess = function (guess, secretNum) {
 
 /////// Displsays win or lose
 const gameEnd = function (guess, result) {
-  inputUserGuess.value = "";
-
   gameSection.classList.add("game-over-guess");
 
   // Display win messages
@@ -150,11 +119,10 @@ const playGame = function () {
   // Get the players guess
   const curGuess = Math.floor(inputUserGuess.value);
   inputUserGuess.blur();
-
+  inputUserGuess.value = "";
   // Check if number
   if (isNaN(curGuess) || curGuess < numMin || curGuess > numMax) {
     displayInvalidMessage("game");
-    inputUserGuess.value = "";
     return;
   }
 
