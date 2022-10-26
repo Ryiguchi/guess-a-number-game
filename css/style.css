@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Seymour+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Seymour+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monofett&display=swap");
 :root {
   --main-guess-num-text-color: #e0c95e;
   --main-guess-num-text-tint: #655400;
@@ -126,7 +127,8 @@ label {
   font-size: 2rem;
 }
 
-input {
+input,
+select {
   font-size: 2.4rem;
   text-align: center;
 
@@ -144,6 +146,10 @@ input:focus {
   grid-column: 1 / -1;
 
   padding-left: 2rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 .btn {
@@ -179,6 +185,81 @@ input:focus {
   min-height: 7rem;
   width: 100%;
   padding: 1rem;
+}
+
+/* **************************** */
+/* MENU *********************** */
+/* **************************** */
+
+.body-menu {
+  color: #333;
+  background: linear-gradient(
+      to bottom right,
+      rgba(119, 0, 255, 0.3) 40%,
+      rgb(210, 170, 255),
+      rgba(119, 0, 255, 0.3) 60%
+    ),
+    linear-gradient(
+      to bottom left,
+      rgb(119, 0, 255) 30%,
+      rgba(225, 199, 255, 0.712),
+      rgba(119, 0, 255, 0.589) 50%
+    );
+}
+
+.title-menu:after {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  height: 5rem;
+  width: 30rem;
+  content: " ";
+  background-color: rgba(17, 0, 255, 0.397);
+  transform: translate(50%, -50%) skew(-30deg);
+  border-radius: 20px 0 20px 0;
+}
+.title-menu:before {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  height: 6.5rem;
+  width: 35rem;
+
+  content: " ";
+  z-index: -1;
+
+  background-color: rgba(210, 170, 255, 0.76);
+  transform: translate(50%, -50%) skew(-30deg);
+  border-radius: 20px 0 20px 0;
+}
+
+.title-menu-container {
+  position: relative;
+  height: 6rem;
+  margin: 0 auto;
+}
+
+.game-container-menu {
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.308);
+  margin-top: 5rem;
+  border-radius: 30px 0 30px 0;
+}
+
+.btn-menu {
+  font-size: 2.4rem;
+  background-color: rgba(17, 0, 255, 0.397);
+  width: 95%;
+  padding: 1.6rem 0;
+  border-radius: 15px 0 15px 0;
+}
+
+.game-container-menu a:link,
+.game-container-menu a:visited {
+}
+.game-container-menu a:hover,
+.game-container-menu a:active {
+  background-color: rgb(210, 170, 255);
 }
 
 /* **************************** */
@@ -339,11 +420,12 @@ li {
 }
 
 .title-container-rps {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 
 .game-container-rps {
   background-color: rgba(255, 255, 255, 0.315);
+  margin: 0 0 3rem 0 !important;
 }
 
 .start-section-rps {
@@ -631,6 +713,10 @@ tfoot {
 
 /* GAME SECTION ***************** */
 
+.main-memory {
+  margin-bottom: 1rem;
+}
+
 .player-section-memory {
   column-gap: 1rem;
 
@@ -780,7 +866,7 @@ tfoot {
 
   content: "";
   height: 4.8rem;
-  width: 25rem;
+  width: 27rem;
   background-color: rgba(255, 255, 255, 0.253);
   transform: skew(20deg) translate(53%, -50%);
 }
@@ -994,6 +1080,158 @@ tfoot {
   border-radius: 5px;
 }
 
+/* **************************** */
+/* MINESWEEPER **************** */
+/* **************************** */
+
+.grid-col-9 {
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.grid-col-16 {
+  grid-template-columns: repeat(16, 1fr);
+}
+
+.body-mine {
+  /* color: #333; */
+  color: rgb(83, 56, 0);
+  background: linear-gradient(
+    to right,
+    rgb(88, 81, 67),
+    rgb(175, 131, 43),
+    rgb(157, 188, 202),
+    rgb(175, 131, 43),
+    rgb(88, 81, 67)
+  );
+  max-width: 120rem;
+  max-height: 100vh;
+}
+
+.header-mine {
+  max-width: 35rem;
+  margin: 0 auto;
+}
+
+.title-mine {
+  height: 6rem;
+  font-size: 4.2rem;
+  font-family: "Monofett";
+}
+
+.start-section-mine {
+  gap: 5rem;
+  margin-top: 5rem;
+}
+
+.game-container-mine {
+  background-color: rgba(255, 255, 255, 0.308);
+}
+
+.game-container-start-mine {
+  gap: 2.4rem;
+  max-width: 35rem;
+  padding: 2rem 0 3rem 0;
+}
+
+.game-container-mine h2 {
+  font-size: 2.4rem;
+}
+
+.btn-mine,
+.square-top,
+.game-container-game-mine,
+.title-mine,
+.game-container-mine {
+  background: linear-gradient(
+    to left top,
+    rgb(231, 245, 252),
+    rgb(100, 120, 129)
+  );
+  border-top: 3px solid #fff;
+  border-right: 3px solid #555;
+  border-bottom: 3px solid #555;
+  border-left: 3px solid #fff;
+}
+
+.body-mine .play-btn {
+  margin-bottom: 0;
+}
+
+/* GAME SECTION *************** */
+.game-container-game-mine {
+  max-height: 100vh;
+  max-width: 50rem;
+  margin: 1rem 1rem;
+  padding-top: 1rem;
+}
+
+.game-board-header {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.game-board-header .btn {
+  height: 5.2rem;
+}
+
+.mine-count-container {
+  gap: 1rem;
+}
+
+.mine-count-container span:first-child {
+  margin-bottom: 0.4rem;
+}
+
+.game-board-mine {
+  border-bottom: 5px solid #fff;
+  border-left: 5px solid #555;
+  border-top: 5px solid #555;
+  border-right: 5px solid #fff;
+  background: linear-gradient(
+    to left top,
+    rgb(217, 252, 255),
+    #eee,
+    80%,
+    rgb(172, 157, 137)
+  );
+}
+
+.cell-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.square-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 80%;
+}
+
+.square-bottom {
+  color: #333;
+  font-size: 80%;
+  background-color: transparent;
+  border: 0.5px solid #555;
+  height: 100%;
+  width: 100%;
+}
+
+.winner-mine {
+  background-color: #333;
+}
+
+.loser-mine {
+  background-color: rgb(170, 0, 0);
+}
+
+.no-flag {
+  font-size: 0;
+}
 /*  */
 /*  */
 .hidden {

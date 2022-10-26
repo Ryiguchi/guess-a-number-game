@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/mine.js"></script>
+    <title>Minesweeper</title>
+  </head>
+  <body class="body-mine">
+    <header class="header-mine">
+      <h1 class="title title-mine">Minesweeper</h1>
+    </header>
+    <section class="start-section-mine flex flex-col">
+      <div
+        class="game-container-mine game-container-start-mine game-container flex flex-col"
+      >
+        <h2>Options</h2>
+        <select name="difficulty" id="difficulty" class="btn btn-mine">
+          <option value="0">Difficulty</option>
+          <option value="9">Easy</option>
+          <option value="16">Medium</option>
+          <!-- <option value="30">Hard</option> -->
+        </select>
+      </div>
+      <button class="btn play-btn btn-mine">Play!</button>
+      <div
+        class="game-container game-container-mine message game-container-start-mine message-mine flex hidden"
+      >
+        Please select a difficulty level!
+      </div>
+    </section>
+    <section class="game-section-mine flex flex-col hidden">
+      <div class="game-container game-container-mine game-container-game-mine">
+        <div class="game-board-header flex">
+          <div class="mine-count-container btn btn-mine flex">
+            <span>💣</span>
+            <span class="mine-count">00</span>
+          </div>
+
+          <button class="start-over-mine btn btn-mine">Start Over</button>
+          <div class="timer-mine btn btn-mine flex">00:00</div>
+        </div>
+        <div class="game-board-mine grid grid-mine"></div>
+      </div>
+    </section>
+  </body>
+</html>
+
+<!-- <div class="cell-container">
+  <div class="square-bottom flex" data-num="${i}"></div>
+  <div class="square-top" data-num="${i}"></div>
+</div> -->
