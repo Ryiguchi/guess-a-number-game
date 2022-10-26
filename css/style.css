@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Seymour+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Seymour+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Monofett&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 :root {
   --main-guess-num-text-color: #e0c95e;
   --main-guess-num-text-tint: #655400;
@@ -1103,6 +1103,8 @@ tfoot {
 
 .body-mine {
   /* color: #333; */
+  font-family: "Press Start 2P";
+  font-size: 1.6rem;
   color: rgb(83, 56, 0);
   background: linear-gradient(
     to right,
@@ -1116,6 +1118,11 @@ tfoot {
   max-height: 100vh;
 }
 
+.btn-mine {
+  font-size: 1.4rem;
+  letter-spacing: 0px;
+}
+
 .header-mine {
   max-width: 35rem;
   margin: 0 auto;
@@ -1123,8 +1130,7 @@ tfoot {
 
 .title-mine {
   height: 6rem;
-  font-size: 4.2rem;
-  font-family: "Monofett";
+  font-size: 2.4rem;
 }
 
 .start-section-mine {
@@ -1137,13 +1143,15 @@ tfoot {
 }
 
 .game-container-start-mine {
+  font-size: 1.6rem;
+  line-height: 1.5;
   gap: 2.4rem;
   max-width: 35rem;
   padding: 2rem 0 3rem 0;
 }
 
 .game-container-mine h2 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .game-container-start-mine select {
@@ -1155,6 +1163,7 @@ tfoot {
 .game-container-game-mine,
 .title-mine,
 .game-container-mine {
+  font-family: inherit;
   background: linear-gradient(
     to left top,
     rgb(231, 245, 252),
@@ -1168,6 +1177,7 @@ tfoot {
 
 .body-mine .play-btn {
   margin-bottom: 0;
+  font-size: 2rem;
 }
 
 /* GAME SECTION *************** */
@@ -1196,6 +1206,7 @@ tfoot {
 }
 
 .game-board-mine {
+  font-family: sans-serif;
   border-bottom: 5px solid #fff;
   border-left: 5px solid #555;
   border-top: 5px solid #555;
@@ -1222,12 +1233,11 @@ tfoot {
   right: 0;
   bottom: 0;
   left: 0;
-  font-size: 80%;
 }
 
 .square-bottom {
   color: #333;
-  font-size: 80%;
+
   background-color: transparent;
   border: 0.5px solid #555;
   height: 100%;

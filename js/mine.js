@@ -281,6 +281,7 @@ startBtn.addEventListener("click", function (e) {
 startOverBtn.addEventListener("click", function (e) {
   e.preventDefault();
   toggleScreens();
+  startMessage.classList.add("hidden");
 });
 
 gameBoard.addEventListener("click", function (e) {
