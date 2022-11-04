@@ -16,6 +16,7 @@
   },
   {
     "img": "img/JSON/pig.png",
+    "alt": "Picture of my Pig game",
     "title": "Pig Game",
     "titleText": "Be too greedy and you'll lose! This 2 player game is a game of chance and greed!",
     "modalTitle": "Pig Game",
@@ -30,6 +31,7 @@
   },
   {
     "img": "img/JSON/memory.png",
+    "alt": "Picture of my Memory game",
     "title": "Classic Memory",
     "titleText": "Play this game with a friend too see who has a better memory! More tile choices coming for kids!",
     "modalTitle": "Memory",
@@ -44,6 +46,7 @@
   },
   {
     "img": "img/JSON/rps.png",
+    "alt": "Picture of my Rock, Papper, Scissors game",
     "title": "Rock, Papper, Scissors",
     "titleText": "Are you too attached to your phone to put it down long enough to play rock, papper, scissors with your hands? I have you covered!",
     "modalTitle": "Rock, Papper,Scissors",
@@ -58,6 +61,7 @@
   },
   {
     "img": "img/JSON/guess.png",
+    "alt": "Picture of my Guess a Number game",
     "title": "Guess the Number",
     "titleText": "Have you often thought that you are psychic? Try this simple game where all you need to do is guess a randomly generated number.",
     "modalTitle": "Guess the #",
