@@ -1,13 +1,18 @@
 [
   {
     "img": "img/JSON/mine.png",
+    "alt": "Picture of my Minesweeper game",
     "title": "Classic Minesweeper",
     "titleText": "Take a nostalgic trip back to the 90's with Minesweeper! Soon to be optimzed for desktop!",
     "modalTitle": "Minesweeper",
     "category": "Game",
     "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. There are only 2 difficulty levels right now but I would like to eventually add a \"hard\" level for larger screen sizes.",
-    "num": 0
+    "num": 0,
+    "type": "mobile",
+    "className": "mine",
+    "gitHub": "https://github.com/Ryiguchi/guess-a-number-game",
+    "link": "https://ryiguchi.github.io/guess-a-number-game/mine.html"
   },
   {
     "img": "img/JSON/pig.png",
@@ -17,7 +22,11 @@
     "category": "Game",
     "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. I had previously built this game with Jonas Schmedtmann for an Udemy course so I want to give him some credit for some of the logic and even design.",
-    "num": 1
+    "num": 1,
+    "type": "mobile",
+    "className": "pig",
+    "gitHub": "https://github.com/Ryiguchi/guess-a-number-game",
+    "link": "https://ryiguchi.github.io/guess-a-number-game/pig.html"
   },
   {
     "img": "img/JSON/memory.png",
@@ -27,7 +36,11 @@
     "category": "Game",
     "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. I would like to eventually add a \"hard\" level and also choices of tiles for kids so my children can play!",
-    "num": 2
+    "num": 2,
+    "type": "mobile",
+    "className": "memory",
+    "gitHub": "https://github.com/Ryiguchi/guess-a-number-game",
+    "link": "https://ryiguchi.github.io/guess-a-number-game/memory.html"
   },
   {
     "img": "img/JSON/rps.png",
@@ -37,7 +50,11 @@
     "category": "Game",
     "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes.",
-    "num": 3
+    "num": 3,
+    "type": "mobile",
+    "className": "rps",
+    "gitHub": "https://github.com/Ryiguchi/guess-a-number-game",
+    "link": "https://ryiguchi.github.io/guess-a-number-game/rps.html"
   },
   {
     "img": "img/JSON/guess.png",
@@ -47,6 +64,10 @@
     "category": "Game",
     "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. The game allows the player to choose the range and the number of guesses.",
-    "num": 4
+    "num": 4,
+    "type": "mobile",
+    "className": "guess",
+    "gitHub": "https://github.com/Ryiguchi/guess-a-number-game",
+    "link": "https://ryiguchi.github.io/guess-a-number-game/guess-num.html"
   }
 ]
