@@ -5,7 +5,7 @@
     "titleText": "Take a nostalgic trip back to the 90's with Minesweeper! Soon to be optimzed for desktop!",
     "modalTitle": "Minesweeper",
     "category": "Game",
-    "tech": "HTML, CSS, JavaScript",
+    "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. There are only 2 difficulty levels right now but I would like to eventually add a \"hard\" level for larger screen sizes."
   },
   {
@@ -14,7 +14,7 @@
     "titleText": "Be too greedy and you'll lose! This 2 player game is a game of chance and greed!",
     "modalTitle": "Pig Game",
     "category": "Game",
-    "tech": "HTML, CSS, JavaScript",
+    "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. I had previously built this game with Jonas Schmedtmann for an Udemy course so I want to give him some credit for some of the logic and even design."
   },
   {
@@ -23,7 +23,7 @@
     "titleText": "Play this game with a friend too see who has a better memory! More tile choices coming for kids!",
     "modalTitle": "Memory",
     "category": "Game",
-    "tech": "HTML, CSS, JavaScript",
+    "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. I would like to eventually add a \"hard\" level and also choices of tiles for kids so my children can play!"
   },
   {
@@ -32,7 +32,7 @@
     "titleText": "Are you too attached to your phone to put it down long enough to play rock, papper, scissors with your hands? I have you covered!",
     "modalTitle": "Rock, Papper,Scissors",
     "category": "Game",
-    "tech": "HTML, CSS, JavaScript",
+    "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes."
   },
   {
@@ -41,7 +41,7 @@
     "titleText": "Have you often thought that you are psychic? Try this simple game where all you need to do is guess a randomly generated number.",
     "modalTitle": "Guess the #",
     "category": "Game",
-    "tech": "HTML, CSS, JavaScript",
+    "tech": "HTML, CSS & JavaScript",
     "modalText": "This is a mobile first school project that has not yet been optimized for different screen sizes. The game allows the player to choose the range and the number of guesses."
   }
 ]
