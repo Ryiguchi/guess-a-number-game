@@ -1,6 +1,6 @@
 [
   {
-    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/mine.png",
+    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/mine.webp",
     "alt": "Picture of my Minesweeper game",
     "title": "Classic Minesweeper",
     "titleText": "Take a nostalgic trip back to the 90's with Minesweeper! Soon to be optimzed for desktop!",
@@ -15,7 +15,7 @@
     "link": "https://ryiguchi.github.io/guess-a-number-game/mine.html"
   },
   {
-    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/pig.png",
+    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/pig.webp",
     "alt": "Picture of my Pig game",
     "title": "Pig Game",
     "titleText": "Be too greedy and you'll lose! This 2 player game is a game of chance and greed!",
@@ -30,7 +30,7 @@
     "link": "https://ryiguchi.github.io/guess-a-number-game/pig.html"
   },
   {
-    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/memory.png",
+    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/memory.webp",
     "alt": "Picture of my Memory game",
     "title": "Classic Memory",
     "titleText": "Play this game with a friend too see who has a better memory! More tile choices coming for kids!",
@@ -45,7 +45,7 @@
     "link": "https://ryiguchi.github.io/guess-a-number-game/memory.html"
   },
   {
-    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/rps.png",
+    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/rps.webp",
     "alt": "Picture of my Rock, Papper, Scissors game",
     "title": "Rock, Papper, Scissors",
     "titleText": "Are you too attached to your phone to put it down long enough to play rock, papper, scissors with your hands? I have you covered!",
@@ -60,7 +60,7 @@
     "link": "https://ryiguchi.github.io/guess-a-number-game/rps.html"
   },
   {
-    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/guess.png",
+    "img": "https://raw.githubusercontent.com/Ryiguchi/guess-a-number-game/main/json/img-json/guess.webp",
     "alt": "Picture of my Guess a Number game",
     "title": "Guess the Number",
     "titleText": "Have you often thought that you are psychic? Try this simple game where all you need to do is guess a randomly generated number.",
